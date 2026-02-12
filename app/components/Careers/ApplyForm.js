@@ -114,7 +114,7 @@ const ApplyForm = () => {
 
       <div className="max-w-4xl mx-auto w-full border border-[#ED1C25] px-5 lg:px-10 py-5 flex flex-col gap-8">
         <h3 className="text-2xl text-[#646464] text-center">
-          Apply Now
+          Apply Now  
         </h3>
 
         {/* Name */}
