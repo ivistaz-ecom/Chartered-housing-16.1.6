@@ -14,6 +14,23 @@ const ProjectsSection = () => {
   const carouselProjects = [
     {
       id: 1,
+      image: "/home/gulmohar-home.webp",
+      alt: "Chartered Housing | Chartered Gulmohar | Premium Plotted Development in Nelamangala, Bengaluru",
+      // logo: "/ongoing-project/bird-song.svg",
+      logoAlt: "Chartered Gulmohar",
+      ProjectTitle: "Chartered Gulmohar",
+      title: <>A quieter addressdesigned for <br /> long-term value</>,
+      description:
+        "A premium plotted development across 10 acres in Nelamangala, Chartered Gulmohar offers well-planned villa plots with underground infrastructure and landscaped green spaces. Designed for both future home construction and long-term investment, it brings together peaceful surroundings and everyday connectivity.",
+      buttonLink: "/projects/ongoing/chartered-gulmohar",
+      desktopLogoWidth: 400,
+      desktopLogoHeight: 100,
+      mobileLogoWidth: 320,
+      mobileLogoHeight: 60,
+
+    },
+    {
+      id: 2,
       image: "/home/ongoing.webp",
       alt: "Chartered Housing | Chartered Birdsong | Premium Residential Plots at Sadenahalli on Yelahanka–Doddaballapur Highway, Bengaluru",
       // logo: "/ongoing-project/bird-song.svg",
@@ -30,7 +47,7 @@ const ProjectsSection = () => {
 
     },
     {
-      id: 2,
+      id: 3,
       image: "/home/legacy.webp",
       alt: "Chartered Housing | Chartered 1956 | Premium 4bhk boutique residences on Palace Road, Bengaluru",
       // logo: "/ongoing-project/chartered-1956.svg",
@@ -104,9 +121,9 @@ const ProjectsSection = () => {
                   src={currentProject.image}
                   alt={currentProject.alt}
                   width={600}
-                    height={400}
-                    className="w-[600px]"
-                  />
+                  height={400}
+                  className="w-[600px]"
+                />
                 {/* Desktop Logo */}
                 {/* <div className="absolute top-5 -right-20 bg-white px-4 py-2 hidden lg:block">
                   <Image

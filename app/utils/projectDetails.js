@@ -1,3 +1,64 @@
+export const chGulmoharProjectDetails = [
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-1.svg",
+    title: 'Spread across 10 acres',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-2.svg",
+    title:
+      'NPA approved <br /> & RERA registered',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-3.svg",
+    title:
+      'Premium villa plots: <br /> 1200, 1500 sft & larger',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-4.svg",
+    title:
+      'Grand entrance <br /> portal with secured <br /> boundary ',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-5.svg",
+    title:
+      'Pedestrian <br /> <span class="text-[#ED1C25]"> footpaths</span>',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-6.svg",
+    title:
+      '<span class="text-[#ED1C25]"> Street lighting</span>',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-7.svg",
+    title:
+      'Underground storm <br /> water & sewerage lines',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-8.svg",
+    title:
+      'Underground water <br />pipeline to all plots',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-9.svg",
+    title:
+      'Electrical conduit <br /> provisions for <br /> individual plots',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-10.svg",
+    title:
+      'Avenue plantation & landscaped green areas',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-11.svg",
+    title:
+      'Asphalted internal roads',
+  },
+  {
+    icon: "/Charted-gulmohar/chartered-gulmohar-icon-12.svg",
+    title: 'Underground rainwater & sewerage systems',
+  },
+];
+
 export const ch1956projectDetails = [
   {
     icon: "/chartered-1956/icon-1.svg",

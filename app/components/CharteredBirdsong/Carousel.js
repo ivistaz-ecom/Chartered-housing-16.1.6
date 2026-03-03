@@ -1,10 +1,15 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
+import Script from "next/script";
 import { motion } from "framer-motion";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { X } from "lucide-react";
 import Button from "../Shared/Button";
 import { useFormHandler } from "@/hooks/useFormHandler";
+
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+const RECAPTCHA_SCRIPT = "https://www.google.com/recaptcha/api.js";
 import {
   CheckboxField,
   PhoneInputField,
@@ -27,11 +32,50 @@ const Carousel = () => {
     formData,
     handleChange,
     handleSelectChange,
-    handleSubmit,
+    handleSubmit: submitForm,
     isSubmitting,
     submitStatus,
     fieldErrors,
   } = useFormHandler(5862);
+
+  const recaptchaContainerRef = useRef(null);
+  const widgetIdRef = useRef(null);
+  const [mounted, setMounted] = useState(false);
+  const [recaptchaReady, setRecaptchaReady] = useState(false);
+  const [recaptchaError, setRecaptchaError] = useState("");
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (!showModal) {
+      widgetIdRef.current = null;
+      return;
+    }
+    if (!RECAPTCHA_SITE_KEY || widgetIdRef.current !== null) return;
+    const renderWidget = () => {
+      const container = recaptchaContainerRef.current;
+      if (typeof window.grecaptcha === "undefined" || !container) return;
+      try {
+        widgetIdRef.current = window.grecaptcha.render(container, {
+          sitekey: RECAPTCHA_SITE_KEY,
+          theme: "light",
+          size: "normal",
+        });
+      } catch (err) {
+        console.error("reCAPTCHA render error:", err);
+      }
+    };
+    const init = () => {
+      if (typeof window.grecaptcha === "undefined") return;
+      if (window.grecaptcha.ready) {
+        window.grecaptcha.ready(renderWidget);
+      } else {
+        renderWidget();
+      }
+    };
+    const t = setTimeout(init, 150);
+    return () => clearTimeout(t);
+  }, [recaptchaReady, showModal]);
 
   const handleDownloadClick = (e) => {
     e.preventDefault();
@@ -49,7 +93,35 @@ const Carousel = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    await handleSubmit(e);
+    setRecaptchaError("");
+    if (!RECAPTCHA_SITE_KEY) {
+      await submitForm(e);
+      return;
+    }
+    const doSubmit = async () => {
+      if (widgetIdRef.current === null) {
+        setRecaptchaError("reCAPTCHA did not load. Please close and try again.");
+        return;
+      }
+      const token = window.grecaptcha?.getResponse?.(widgetIdRef.current);
+      if (!token) {
+        setRecaptchaError("Please complete the reCAPTCHA verification.");
+        return;
+      }
+      await submitForm(e, { recaptchaToken: token });
+      if (window.grecaptcha?.reset) {
+        window.grecaptcha.reset(widgetIdRef.current);
+      }
+    };
+    if (typeof window.grecaptcha === "undefined") {
+      setRecaptchaError("reCAPTCHA is still loading. Please wait a moment and try again.");
+      return;
+    }
+    if (window.grecaptcha.ready) {
+      window.grecaptcha.ready(doSubmit);
+    } else {
+      await doSubmit();
+    }
   };
 
   // Handle download after successful submission
@@ -166,6 +238,13 @@ const Carousel = () => {
       </div>
 
       {/* Download Gate Modal */}
+      {mounted && RECAPTCHA_SITE_KEY && (
+        <Script
+          src={RECAPTCHA_SCRIPT}
+          strategy="afterInteractive"
+          onLoad={() => setRecaptchaReady(true)}
+        />
+      )}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg max-w-xl w-full max-h-[90vh] overflow-y-auto">
@@ -240,6 +319,15 @@ const Carousel = () => {
                     </span>
                   )}
                 </div> */}
+
+                {mounted && RECAPTCHA_SITE_KEY && (
+                  <div className="flex flex-col gap-2">
+                    <div ref={recaptchaContainerRef} />
+                    {recaptchaError && (
+                      <span className="text-red-500 text-xs">{recaptchaError}</span>
+                    )}
+                  </div>
+                )}
 
                 {/* Submit Status Messages */}
                 {submitStatus === "success" && (
