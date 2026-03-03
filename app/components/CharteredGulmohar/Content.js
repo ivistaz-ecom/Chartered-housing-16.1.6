@@ -18,7 +18,7 @@ const Content = () => {
               Open surroundings and planned infrastructure support peaceful living with long-term investment potential.
             </h6>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center items-center">
               <a href="#site-visit-form">
               <button
                 type="button"
