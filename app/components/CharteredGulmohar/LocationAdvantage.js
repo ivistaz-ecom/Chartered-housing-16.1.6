@@ -31,7 +31,7 @@ const LocationAdvantage = () => {
               Located at just about 40 mins drive from Yeshwantpur
             </p>
             <p className="border-b border-gray-400 pb-4">
-              20 minutes’ drive from NH48/Nelamangala Junction
+              20 minutes drive from NH48/Nelamangala Junction
             </p>
             <p className="border-b border-gray-400 pb-4">
               Easy access to Nelamangala Railway Station

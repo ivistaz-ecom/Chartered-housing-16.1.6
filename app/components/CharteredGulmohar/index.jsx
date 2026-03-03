@@ -22,7 +22,7 @@ const Chartered1956 = () => {
         mobileBackgroundImage="/Charted-gulmohar/charted-gulmohar-mobile.webp"
         sectionTitle="CHARTERED GULMOHAR"
         title="Planned residential plots in a greener,"
-        subtitle="Fast-emerging corridor of Nelamangala"
+        subtitle="fast-emerging corridor of Nelamangala"
         textPosition="bottom-left"
         overlayOpacity={0.2}
         reraNumber="PRM/KA/RERA/1250/307/PR/110226/008465"

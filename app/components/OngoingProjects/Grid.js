@@ -9,7 +9,7 @@ const Grid = () => {
       id: 1,
       title: "Nelamangala",
       alt: "Chartered Housing | Chartered Gulmohar | Premium Plotted Development in Nelamangala, Bengaluru",
-      reraNumber: "PRM/KA/RERA/1251/446/PR/060924/007005",
+      reraNumber: "PRM/KA/RERA/1250/307/PR/110226/008465",
       desktopImage: "/ongoing-project/charted-gulmohar-post.webp",
       mobileImage: "/ongoing-project/charted-gulmohar-post.webp",
       logo: "/ongoing-project/charted-gulmohar-logo.svg",

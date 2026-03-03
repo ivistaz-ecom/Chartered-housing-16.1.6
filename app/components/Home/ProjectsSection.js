@@ -19,9 +19,10 @@ const ProjectsSection = () => {
       // logo: "/ongoing-project/bird-song.svg",
       logoAlt: "Chartered Gulmohar",
       ProjectTitle: "Chartered Gulmohar",
-      title: <>A quieter addressdesigned for <br /> long-term value</>,
+      // title: <>A quieter addressdesigned for <br /> long-term value</>,
+      title: "A quiet address built for lasting value ",
       description:
-        "A premium plotted development across 10 acres in Nelamangala, Chartered Gulmohar offers well-planned villa plots with underground infrastructure and landscaped green spaces. Designed for both future home construction and long-term investment, it brings together peaceful surroundings and everyday connectivity.",
+      <> A premium plotted development across 10 acres in Nelamangala, Chartered Gulmohar offers well-planned villa plots with underground infrastructure and landscaped green spaces. Designed for both future home construction and <br /> long-term investment, it brings together peaceful surroundings and everyday connectivity.</>,
       buttonLink: "/projects/ongoing/chartered-gulmohar",
       desktopLogoWidth: 400,
       desktopLogoHeight: 100,

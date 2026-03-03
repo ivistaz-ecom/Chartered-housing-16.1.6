@@ -1,22 +1,22 @@
 export const chGulmoharProjectDetails = [
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-1.svg",
-    title: 'Spread across 10 acres',
+    title: 'Spread across <span class="text-[#ED1C25]"> 10 acres</span>',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-2.svg",
     title:
-      'NPA approved <br /> & RERA registered',
+      ' <span class="text-[#ED1C25]"> NPA </span> approved <br /> & <span class="text-[#ED1C25]"> RERA </span> registered',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-3.svg",
     title:
-      'Premium villa plots: <br /> 1200, 1500 sft & larger',
+      '<span class="text-[#ED1C25]">Premium villa plots: </span> <br /> 1200, 1500 sft & larger',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-4.svg",
     title:
-      'Grand entrance <br /> portal with secured <br /> boundary ',
+      '<span class="text-[#ED1C25]">Grand entrance </span> <br /> portal with <span class="text-[#ED1C25]"> secured <br /> boundary </span>',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-5.svg",
@@ -31,31 +31,31 @@ export const chGulmoharProjectDetails = [
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-7.svg",
     title:
-      'Underground storm <br /> water & sewerage lines',
+      '<span class="text-[#ED1C25]"> Underground </span> storm <br /> water & sewerage lines',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-8.svg",
     title:
-      'Underground water <br />pipeline to all plots',
+      '<span class="text-[#ED1C25]"> Underground </span> water <br />pipeline to all plots',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-9.svg",
     title:
-      'Electrical conduit <br /> provisions for <br /> individual plots',
+      'Electrical conduit <br /> provisions for <br /><span class="text-[#ED1C25]"> individual plots</span>',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-10.svg",
     title:
-      'Avenue plantation & landscaped green areas',
+      '<span class="text-[#ED1C25]"> Avenue </span> plantation & landscaped <span class="text-[#ED1C25]"> green areas</span>',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-11.svg",
     title:
-      'Asphalted internal roads',
+      'Asphalted <span class="text-[#ED1C25]"> internal roads</span>',
   },
   {
     icon: "/Charted-gulmohar/chartered-gulmohar-icon-12.svg",
-    title: 'Underground rainwater & sewerage systems',
+    title: 'Individual plot provision for <span class="text-[#ED1C25]"> electric and water connections</span>',
   },
 ];
 
