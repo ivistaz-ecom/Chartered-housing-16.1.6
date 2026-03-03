@@ -14,7 +14,7 @@ import LocationAdvantage from "./LocationAdvantage";
 import ExploreProjectDetails from "./ExploreProjectDetails";
 
 
-const Chartered1956 = () => {
+const Chartered1956 = () => {   
   return (
     <div>
       <Banner
