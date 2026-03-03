@@ -48,7 +48,7 @@ const robotoSerif = localFont({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
       <meta name="msvalidate.01" content="A827D56A91561DA21E2E94273F4D52D5" />
       </head>

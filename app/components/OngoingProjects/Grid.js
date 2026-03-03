@@ -3,9 +3,29 @@ import Image from "next/image";
 import Button from "../Shared/Button";
 
 const Grid = () => {
+
   const projects = [
     {
       id: 1,
+      title: "Nelamangala",
+      alt: "Chartered Housing | Chartered Gulmohar | Premium Plotted Development in Nelamangala, Bengaluru",
+      reraNumber: "PRM/KA/RERA/1251/446/PR/060924/007005",
+      desktopImage: "/ongoing-project/charted-gulmohar-post.webp",
+      mobileImage: "/ongoing-project/charted-gulmohar-post.webp",
+      logo: "/ongoing-project/charted-gulmohar-logo.svg",
+      logoWidth: 200,
+      logoHeight: 200,
+      description: [
+        "Set in the calm surroundings of Nelamangala, Chartered Gulmohar is a planned plotted development designed for quieter residential living while remaining connected to Bengaluru.",
+        "Spread across 10 acres, the layout features premium villa plots, underground infrastructure, and a green landscaped park - reflecting Chartered Housing’s planning-led approach.",
+      ],
+      highlightText:
+        "Easy access to Yeshwantpur, NH48 & the Satellite Town Ring Road.",
+      buttonLink: "/projects/ongoing/chartered-gulmohar",
+      isReversed: false,
+    },
+    {
+      id: 2,
       title: "Palace Road",
       alt: "Chartered Housing | Chartered 1956 | Premium 4bhk boutique residences on Palace Road, Bengaluru",
       reraNumber: "PRM/KA/RERA/1251/446/PR/060924/007005",
@@ -24,7 +44,7 @@ const Grid = () => {
       isReversed: false,
     },
     {
-      id: 2,
+      id: 3,
       title: "Yelahanka–Doddaballapur Road",
       alt: "Chartered Housing | Chartered Birdsong | Premium Residential Plots at Sadenahalli on Yelahanka–Doddaballapur Highway, Bengaluru",
       reraNumber: "PRM/KA/RERA/1251/472/PR/210325/007605",
@@ -47,12 +67,11 @@ const Grid = () => {
     <>
       <div className="lg:px-0 px-5">
         <div className="container mx-auto lg:pb-20 pb-10 flex flex-col lg:gap-20 gap-10">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`flex flex-col ${
-                project.isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
-              } gap-10`}
+              className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row-reverse" : "lg:flex-row"
+                } gap-10`}
             >
               <div className="lg:w-1/2 flex flex-col-reverse lg:flex-col gap-5">
                 <Image
@@ -63,7 +82,7 @@ const Grid = () => {
                   className="w-full h-full object-cover object-center hidden lg:block"
                 />
                 <h5 className="text-[#646464] hidden lg:block">{project.reraNumber}</h5>
-              
+
               </div>
 
               <div className="lg:w-1/2 w-full flex flex-col h-full">
