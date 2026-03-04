@@ -138,7 +138,7 @@ const BuiltByCharteredHousing = () => {
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 sm:gap-12 md:gap-24">
           {[
-            { year: "2016", price: "Rs. 1800/sq. Ft." },
+            { year: "2016", price: "Rs. 1800/sq. ft." },
             { year: "2026", price: "Rs. 5500/sq. ft." },
           ].map((item, index) => (
             <div key={index} className="relative w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] md:w-[340px] md:h-[340px] flex items-center justify-center shrink-0">
