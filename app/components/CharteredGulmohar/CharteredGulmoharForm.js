@@ -17,7 +17,7 @@ import Link from "next/link";
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 const RECAPTCHA_SCRIPT = "https://www.google.com/recaptcha/api.js";
 
-const CharteredGulmohar = () => {
+const CharteredGulmohar = ({ variant = "inline", onSuccess }) => {
   const {
     formData,
     handleChange,
@@ -36,6 +36,12 @@ const CharteredGulmohar = () => {
   const [recaptchaError, setRecaptchaError] = useState("");
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (submitStatus === "success" && typeof onSuccess === "function") {
+      onSuccess();
+    }
+  }, [submitStatus, onSuccess]);
 
   useEffect(() => {
     if (!RECAPTCHA_SITE_KEY || widgetIdRef.current !== null) return;
@@ -102,16 +108,23 @@ const CharteredGulmohar = () => {
     }
   };
 
+  const wrapperClassName =
+    variant === "modal"
+      ? ""
+      : "mt-7 mb-10 lg:px-0 px-5 scroll-mt-20";
+
   return (
-    <div id="site-visit-form" className="mt-7 mb-10 lg:px-0 px-5 scroll-mt-20">
-      <div className="max-w-2xl mx-auto mb-10">
-      <h3 className="text-[#ED1C25] text-2xl md:text-3xl font-medium mb-6 roboto-serif-regular text-center">
-      Secure Your Plot in a Growing Corridor
-      </h3>
-      <p className="text-gray-600 leading-relaxed text-center">
-      Plots are limited within a 10-acre community. Speak with our team to understand pricing, availability, and site visit scheduling.
-      </p>
-      </div>
+    <div id={variant === "inline" ? "site-visit-form" : undefined} className={wrapperClassName}>
+      {variant === "inline" && (
+        <div className="max-w-2xl mx-auto mb-10">
+          <h3 className="text-[#ED1C25] text-2xl md:text-3xl font-medium mb-6 roboto-serif-regular text-center">
+            Secure Your Plot in a Growing Corridor
+          </h3>
+          <p className="text-gray-600 leading-relaxed text-center">
+            Plots are limited within a 10-acre community. Speak with our team to understand pricing, availability, and site visit scheduling.
+          </p>
+        </div>
+      )}
       <div className="max-w-7xl mx-auto">
         {mounted && RECAPTCHA_SITE_KEY && (
           <Script
@@ -124,7 +137,7 @@ const CharteredGulmohar = () => {
           <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
             <div className="border border-[#ED1C25] py-5 px-10 w-full flex flex-col gap-8">
               <h3 className="lg:text-[24px] text-2xl text-[#646464] text-center">
-                We’d Love to Hear From You
+                {variant === "modal" ? "Download Brochure" : "We’d Love to Hear From You"}
               </h3>
 
               <div>
@@ -181,7 +194,7 @@ const CharteredGulmohar = () => {
 
               <div>
                 <CheckboxField
-                  id="sendUsYourQueryForm"
+                  id={`sendUsYourQueryForm-${variant}`}
                   checked={formData.consent}
                   onChange={handleSelectChange}
                 />
@@ -215,7 +228,13 @@ const CharteredGulmohar = () => {
 
               <div className="flex justify-center">
                 <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Requesting a Callback..." : "Request a Callback"}
+                  {variant === "modal"
+                    ? isSubmitting
+                      ? "Processing..."
+                      : "Download Brochure"
+                    : isSubmitting
+                      ? "Requesting a Callback..."
+                      : "Request a Callback"}
                 </Button>
               </div>
               <h6 className="text-[#646464] lg:text-[18px] text-center">
