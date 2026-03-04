@@ -175,7 +175,7 @@ const BuiltByCharteredHousing = () => {
               <div className="relative text-center px-2">
                 <p className="text-gray-600 text-base sm:text-xl md:text-2xl">Chartered Veda</p>
                 <p className="text-gray-600 text-xl sm:text-2xl md:text-3xl mt-1 md:mt-2">{item.year}</p>
-                <p style={{ color: "#ED1C24" }} className="text-2xl sm:text-3xl md:text-4xl mt-2 md:mt-4 font-medium">
+                <p style={{ color: "#ED1C24" }} className="!text-xl md:!text-2xl mt-2 md:mt-4 font-medium">
                   {item.price}
                 </p>
               </div>
@@ -183,7 +183,7 @@ const BuiltByCharteredHousing = () => {
           ))}
         </div>
         <div className="mt-6 md:mt-10">
-          <p className="text-gray-600 text-base sm:text-lg md:text-2xl font-medium px-2">
+          <p className="text-gray-600 text-base sm:text-lg md:!text-2xl font-medium px-2">
             Indicative of value growth observed in the region over time.
           </p>
         </div>

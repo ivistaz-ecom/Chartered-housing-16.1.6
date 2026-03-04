@@ -1,7 +1,29 @@
-import React from "react"
-import Link from "next/link";
+"use client";
+
+import React, { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+} from "@/app/components/ui/dialog";
+import CharteredGulmoharForm from "./CharteredGulmoharForm";
+
+const BROCHURE_PDF_URL = "/Brochure/Chartered-Gulmohar-Brochure.pdf";
+
+const buttonClass =
+  "relative cursor-pointer bg-[#ED1C25] z-0 flex items-center gap-2 overflow-hidden border-2 border-[#FAD4D680] px-6 py-3 font-semibold text-white transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:translate-x-[150%] before:translate-y-[150%] before:scale-[2.5] before:rounded-[100%] before:bg-[#fff] before:transition-transform before:duration-1000 before:content-[''] hover:scale-105 hover:text-[#ED1C25] hover:before:translate-x-[0%] hover:before:translate-y-[0%] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed";
 
 const Content = () => {
+  const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
+  const handleBrochureFormSuccess = () => {
+    setIsBrochureModalOpen(false);
+    window.open(BROCHURE_PDF_URL, "_blank");
+  };
+
+  const scrollToForm = () => {
+    document.getElementById("site-visit-form")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <>
       <div className="lg:px-0 px-5">
@@ -19,28 +41,38 @@ const Content = () => {
             </h6>
 
             <div className="flex gap-4 justify-center items-center">
-              <a href="#site-visit-form">
               <button
                 type="button"
-                className="relative cursor-pointer bg-[#ED1C25] z-0 flex items-center gap-2 overflow-hidden border-2 border-[#FAD4D680] px-6 py-3 font-semibold text-white transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:translate-x-[150%] before:translate-y-[150%] before:scale-[2.5] before:rounded-[100%] before:bg-[#fff] before:transition-transform before:duration-1000 before:content-[''] hover:scale-105 hover:text-[#ED1C25] hover:before:translate-x-[0%] hover:before:translate-y-[0%] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={scrollToForm}
+                className={buttonClass}
               >
                 Schedule a Site Visit
               </button>
-              </a>
-              <Link href="/Brochure/Chartered-Gulmohar-Brochure.pdf" target="_blank">
               <button
-                className="relative cursor-pointer bg-[#ED1C25] z-0 flex items-center gap-2 overflow-hidden border-2 border-[#FAD4D680] px-6 py-3 font-semibold text-white transition-all duration-500 before:absolute before:inset-0 before:-z-10 before:translate-x-[150%] before:translate-y-[150%] before:scale-[2.5] before:rounded-[100%] before:bg-[#fff] before:transition-transform before:duration-1000 before:content-[''] hover:scale-105 hover:text-[#ED1C25] hover:before:translate-x-[0%] hover:before:translate-y-[0%] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                type="button"
+                onClick={() => setIsBrochureModalOpen(true)}
+                className={buttonClass}
               >
                 Download Brochure
               </button>
-              </Link>
             </div>
           </div>
-
         </div>
       </div>
+
+      <Dialog
+        open={isBrochureModalOpen}
+        onOpenChange={setIsBrochureModalOpen}
+      >
+        <DialogContent>
+          <CharteredGulmoharForm
+            variant="modal"
+            onSuccess={handleBrochureFormSuccess}
+          />
+        </DialogContent>
+      </Dialog>
     </>
-  )
-}
+  );
+};
 
 export default Content
