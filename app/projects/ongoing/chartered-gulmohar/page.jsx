@@ -4,9 +4,9 @@ import CharteredGulmohar from '../../../components/CharteredGulmohar'
 import SeoClient from '@/app/components/Shared/SeoClient'
 const page = () => {
   const seoField = {
-    title: "Chartered 1956 | 4 BHK Luxury Apartments in Palace Road",
-    description: "Experience ultra-luxury living at Chartered 1956, Palace Road. Spacious 4 BHK apartments with premium amenities, crafted for comfort, style, and elegance in Bangalore.",
-    path: "/projects/ongoing/chartered-1956",
+    title: "Chartered Gulmohar | Premium Residential Plots in Nelamangala | Chartered Housing",
+    description: "Explore Chartered Gulmohar, a planned development in Nelamangala offering premium residential villa plots with underground infrastructure, green spaces, and strong connectivity.",
+    path: "/projects/ongoing/chartered-gulmohar",
   }
   return (
     <div>
