@@ -14,16 +14,16 @@ const Grid = () => {
         "Located just off Bannerghatta Road, just 15 minutes away from NICE road. Proposed Row Villa projects with all modern amenities.",
       buttonLink: "/projects/upcoming/premium-row-villas",
     },
-    {
-      id: 2,
-      // image: "/upcoming-project/plotted.png",
-      alt: "Premium Plotted Development",
-      title: "Premium Plotted Development",
-      location: "Nelamangala Road",
-      description:
-        "Located just off the Nelamangala-Doddaballapur Highway. Close to our recently completed project, Chartered Veda. Proposed premium plotted development projects spread across 10 acres with various plot sizes.",
-      buttonLink: "/projects/upcoming/premium-plotted-development",
-    },
+    // {
+    //   id: 2,
+    //   // image: "/upcoming-project/plotted.png",
+    //   alt: "Premium Plotted Development",
+    //   title: "Premium Plotted Development",
+    //   location: "Nelamangala Road",
+    //   description:
+    //     "Located just off the Nelamangala-Doddaballapur Highway. Close to our recently completed project, Chartered Veda. Proposed premium plotted development projects spread across 10 acres with various plot sizes.",
+    //   buttonLink: "/projects/upcoming/premium-plotted-development",
+    // },
     {
       id: 3,
       // image: "/upcoming-project/boutique.png",
