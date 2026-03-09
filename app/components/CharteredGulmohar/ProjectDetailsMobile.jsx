@@ -13,18 +13,18 @@ const ProjectDetails = () => {
   return (
     <div className="relative lg:hidden">
       <Image
-        src="/chartered-1956/project-overview.webp"
+        src="/Charted-gulmohar/chartered-gulmohar-project-overview.webp"
         alt="Project Overview Background"
         fill
         className="object-cover object-center -z-10 lg:block hidden"
       />
       <Image
-        src="/chartered-1956/mobile-details.webp"
+        src="/Charted-gulmohar/chartered-gulmohar-project-overview-mob.webp"
         alt="Project Overview Background"
         fill
         className="object-cover object-center -z-10 lg:hidden"
       />
-      <div className="relative max-w-7xl mx-auto lg:py-40 py-10 lg:px-0 px-5">
+      <div className="relative max-w-7xl mx-auto lg:py-40 py-10 lg:px-0 px-5 bg-black/50">
         <h3 className="lg:text-4xl text-2xl text-[#ffff] roboto-serif-regular text-center">
           Project Overview
         </h3>

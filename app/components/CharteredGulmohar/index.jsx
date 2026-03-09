@@ -18,8 +18,8 @@ const Chartered1956 = () => {
   return (
     <div>
       <Banner
-        backgroundImage="/Charted-gulmohar/gulmohar-banner.webp"
-        mobileBackgroundImage="/Charted-gulmohar/charted-gulmohar-mobile.webp"
+        backgroundImage="/Charted-gulmohar/chartered-gulmohar-banner-desk.webp"
+        mobileBackgroundImage="/Charted-gulmohar/chartered-gulmohar-banner-mob.webp"
         sectionTitle="CHARTERED GULMOHAR"
         title="Planned residential plots in a greener,"
         subtitle="fast-emerging corridor of Nelamangala"
