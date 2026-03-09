@@ -13,15 +13,15 @@ const ProjectDetails = () => {
   };
 
   return (
-    <div className="relative hidden lg:block bg-black/30">
+    <div className="relative hidden lg:block bg-black/50">
       <Image
-        src="/chartered-1956/project-overview.webp"
+        src="/Charted-gulmohar/chartered-gulmohar-project-overview.webp"
         alt="Project Overview Background"
         fill
-        className="object-cover object-center -z-10 lg:block hidden"
+        className="object-cover object-center -z-10 lg:block hidden "
       />
       <Image
-        src="/chartered-1956/mobile-details.webp"
+        src="/Charted-gulmohar/chartered-gulmohar-project-overview-mob.webp"
         alt="Project Overview Background"
         fill
         className="object-cover object-center -z-10 lg:hidden"
