@@ -38,12 +38,20 @@ const SuccessStories = () => {
                 className="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg bg-black group focus:outline-none focus:ring-2 focus:ring-[#ED1C24] focus:ring-offset-2 focus:ring-offset-white"
                 aria-label="Play success story video 1"
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105 group-focus:scale-105"
-                  style={{
-                    backgroundImage: `url(https://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
-                  }}
-                />
+                {/* Use higher-res thumbnail with graceful fallback */}
+                <div className="absolute inset-0">
+                  <picture>
+                    <source
+                      srcSet={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                    />
+                    <img
+                      src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                      alt="Client success story video 1 thumbnail"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 group-focus:scale-105"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                   <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-lg group-hover:bg-white group-focus:bg-white transition-colors">
@@ -59,12 +67,19 @@ const SuccessStories = () => {
                 className="relative w-full pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg bg-black group focus:outline-none focus:ring-2 focus:ring-[#ED1C24] focus:ring-offset-2 focus:ring-offset-white"
                 aria-label="Play success story video 2"
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-105 group-focus:scale-105"
-                  style={{
-                    backgroundImage: `url(https://img.youtube.com/vi/${secondVideoId}/hqdefault.jpg)`,
-                  }}
-                />
+                <div className="absolute inset-0">
+                  <picture>
+                    <source
+                      srcSet={`https://img.youtube.com/vi/${secondVideoId}/maxresdefault.jpg`}
+                    />
+                    <img
+                      src={`https://img.youtube.com/vi/${secondVideoId}/hqdefault.jpg`}
+                      alt="Client success story video 2 thumbnail"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 group-focus:scale-105"
+                      loading="lazy"
+                    />
+                  </picture>
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                   <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-lg group-hover:bg-white group-focus:bg-white transition-colors">
