@@ -87,7 +87,7 @@ const Footer = () => {
               <a 
                 target='_blank' 
                 rel="noopener noreferrer"
-                href="https://www.youtube.com/@charteredhousing25" 
+                href="https://www.youtube.com/@CharteredHousingBLR" 
                 aria-label="Visit Chartered Housing on YouTube"
                 className='w-10 h-10 bg-[#646464] rounded-full p-2 flex items-center justify-center hover:bg-gray-700 transition-colors'>
                 {/* Youtube Icon */}
