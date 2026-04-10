@@ -7,11 +7,11 @@ const Grid = () => {
     {
       id: 1,
       // image: "/upcoming-project/row-villas.png",
-      alt: "Premium Row Villas",
-      title: "Premium Row Villas",
+      alt: "Urban Premium Villament",
+      title: "Urban Premium Villament",
       location: "Bannerghatta Road",
       description:
-        "Located just off Bannerghatta Road, just 15 minutes away from NICE road. Proposed Row Villa projects with all modern amenities.",
+        "Located just off Bannerghatta Road, just 15 minutes away from NICE road. Proposed urban premium villament projects with all modern amenities.",
       buttonLink: "/projects/upcoming/premium-row-villas",
     },
     // {
@@ -52,7 +52,7 @@ const Grid = () => {
           >
             {/* <Image
               src={project.image || "/upcoming-project/row-villas.png"}
-              alt={project.alt || "Premium Row Villas"}
+              alt={project.alt || "Urban Premium Villament"}
               width={1200}
               height={1000}
               className=""
