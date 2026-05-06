@@ -1,10 +1,11 @@
-import localFont from "next/font/local";
-import "./globals.css";
-import Header from "./components/Shared/Header";
-import Footer from "./components/Shared/Footer";
-import ScrollToTop from "./utils/ScrollToTop";
-import LazyAnalytics from "./components/Shared/LazyAnalytics";
-import ClarityInit from "./components/Clarity";
+import localFont from "next/font/local"
+import "./globals.css"
+import HeaderSelector from "./components/Shared/HeaderSelector"
+import Footer from "./components/Shared/Footer"
+import ScrollToTop from "./utils/ScrollToTop"
+import LazyAnalytics from "./components/Shared/LazyAnalytics"
+import ClarityInit from "./components/Clarity"
+import FooterSelector from "./components/Shared/FooterSelector"
 
 // Optimize Nunito font with Next.js font optimization
 const nunito = localFont({
@@ -24,7 +25,7 @@ const nunito = localFont({
   display: "swap",
   preload: true,
   fallback: ["sans-serif"],
-});
+})
 
 // Optimize Roboto Serif font with Next.js font optimization
 const robotoSerif = localFont({
@@ -44,13 +45,13 @@ const robotoSerif = localFont({
   display: "swap",
   preload: true,
   fallback: ["serif"],
-});
+})
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-      <meta name="msvalidate.01" content="A827D56A91561DA21E2E94273F4D52D5" />
+        <meta name="msvalidate.01" content="A827D56A91561DA21E2E94273F4D52D5" />
       </head>
 
       <body
@@ -67,14 +68,14 @@ export default function RootLayout({ children }) {
         </noscript>
         {/* End Google Tag Manager (noscript) */}
 
-        <Header />
+        <HeaderSelector />
         {children}
-        <Footer />
+        <FooterSelector />
         <ClarityInit />
         <ScrollToTop />
         {/* Lazy load analytics scripts after user interaction */}
         <LazyAnalytics />
       </body>
     </html>
-  );
+  )
 }
