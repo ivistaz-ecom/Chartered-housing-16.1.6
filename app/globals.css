@@ -242,12 +242,27 @@ p {
   color: #646464 !important;
 }
 
+.custom-phone-input input::placeholder {
+  color: #8a8a8a !important;
+  opacity: 1 !important;
+}
+
 .floating-button {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1) !important;
 }
 
-
 .marker-red::marker {
-  color: #ED1C24 !important;
+  color: #ed1c24 !important;
   font-size: 1rem;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }

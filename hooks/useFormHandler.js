@@ -160,6 +160,7 @@ export const useFormHandler = (formId) => {
           formId !== 5862 &&
           formId !== 5856 &&
           formId !== 5871 &&
+          formId !== 5877 &&
           (!value || !value.trim())
         ) {
           // Different error messages based on form type
@@ -187,7 +188,14 @@ export const useFormHandler = (formId) => {
         break;
       }
       case "consent":
-        if ((formId === 1067 || formId === 5858 || formId === 5859 || formId === 5871) && !value) {
+        if (
+          (formId === 1067 ||
+            formId === 5858 ||
+            formId === 5859 ||
+            formId === 5871 ||
+            formId === 5877) &&
+          !value
+        ) {
           error = "You must agree to the terms and conditions";
         }
         break;
@@ -241,10 +249,17 @@ export const useFormHandler = (formId) => {
       const cf7Data = new FormData();
       const safeName = sanitizeText(formData.name || (formId === 5862 ? "" : "Not provided"), "name");
       const safeMessage = sanitizeText(formData.message || "No message provided", "message");
-      cf7Data.append("name", safeName || (formId === 5862 ? "" : "Not provided"));
-      cf7Data.append("your-name", safeName || (formId === 5862 ? "" : "Not provided")); // CF7 forms that use your-name (reserved name fix)
-      cf7Data.append("email", formData.email?.trim() || "");
-      cf7Data.append("your-email", formData.email?.trim() || ""); // CF7 forms that use your-email
+      // Some CF7 forms include both tags in mail templates, causing duplicates.
+      // For 5877, send only the "your-*" fields.
+      if (formId === 5877) {
+        cf7Data.append("your-name", safeName || (formId === 5862 ? "" : "Not provided"));
+        cf7Data.append("your-email", formData.email?.trim() || "");
+      } else {
+        cf7Data.append("name", safeName || (formId === 5862 ? "" : "Not provided"));
+        cf7Data.append("your-name", safeName || (formId === 5862 ? "" : "Not provided")); // CF7 forms that use your-name
+        cf7Data.append("email", formData.email?.trim() || "");
+        cf7Data.append("your-email", formData.email?.trim() || ""); // CF7 forms that use your-email
+      }
       cf7Data.append("mobile", cleanMobile);
       cf7Data.append("purpose", formData.purpose || "");
       cf7Data.append("company", formData.company || "");
