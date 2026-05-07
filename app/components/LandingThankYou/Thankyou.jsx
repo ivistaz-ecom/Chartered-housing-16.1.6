@@ -23,7 +23,6 @@ const Thankyou = () => {
             <Button href="/">Visit Our Website</Button>
           </Link>
         </div>
-        <div className="mt-10 flex justify-center">kindly incorporate</div>
       </div>
     </section>
   )
