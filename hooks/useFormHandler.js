@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { validatePlainTextOnly, sanitizeText } from "@/lib/sanitizeText";
+import { useState } from "react"
+import { validatePlainTextOnly, sanitizeText } from "@/lib/sanitizeText"
 
 // Default form data
 const defaultFormData = {
@@ -13,143 +13,143 @@ const defaultFormData = {
   company: "",
   resume: null, // ✅ Make this `null` (not empty string) to properly handle file objects
   consent: false,
-};
+}
 
 // Mobile number validation - exactly 10 digits only
 const validateMobileNumber = (mobile) => {
   if (!mobile || !mobile.trim()) {
-    return "Mobile number is required";
+    return "Mobile number is required"
   }
 
   // Remove all non-digit characters except +
-  let cleanMobile = mobile.replace(/[^\d+]/g, "");
+  let cleanMobile = mobile.replace(/[^\d+]/g, "")
 
   // Remove country code if present
   if (cleanMobile.startsWith("+91")) {
-    cleanMobile = cleanMobile.substring(3);
+    cleanMobile = cleanMobile.substring(3)
   } else if (cleanMobile.startsWith("+")) {
-    cleanMobile = cleanMobile.substring(1);
+    cleanMobile = cleanMobile.substring(1)
   }
 
   // Check if only digits remain
   if (!/^\d+$/.test(cleanMobile)) {
-    return "Mobile number should contain only digits";
+    return "Mobile number should contain only digits"
   }
 
-  const length = cleanMobile.length;
+  const length = cleanMobile.length
 
   // Must be exactly 10 digits
   if (length !== 10) {
-    return "Mobile number must be exactly 10 digits";
+    return "Mobile number must be exactly 10 digits"
   }
 
   // First digit must be 6, 7, 8, or 9 for Indian numbers
-  const firstDigit = cleanMobile[0];
+  const firstDigit = cleanMobile[0]
   if (!["6", "7", "8", "9"].includes(firstDigit)) {
-    return "Invalid Indian mobile number format";
+    return "Invalid Indian mobile number format"
   }
 
-  return null;
-};
+  return null
+}
 
 export const useFormHandler = (formId) => {
-  const [formData, setFormData] = useState(defaultFormData);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-  const [fieldErrors, setFieldErrors] = useState({});
+  const [formData, setFormData] = useState(defaultFormData)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
+  const [fieldErrors, setFieldErrors] = useState({})
 
   const handleChange = (e) => {
-    if (!e?.target) return; // ✅ Prevent runtime error
+    if (!e?.target) return // ✅ Prevent runtime error
 
-    const { name, type, value, checked } = e.target;
+    const { name, type, value, checked } = e.target
 
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
-    }));
+    }))
 
     if (fieldErrors[name]) {
       setFieldErrors((prev) => ({
         ...prev,
         [name]: null,
-      }));
+      }))
     }
-  };
+  }
 
   const handleSelectChange = (name, value) => {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }));
+    }))
 
     if (fieldErrors[name]) {
       setFieldErrors((prev) => ({
         ...prev,
         [name]: null,
-      }));
+      }))
     }
-  };
+  }
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     if (file) {
       // ✅ Store the actual file object in formData
       setFormData((prev) => ({
         ...prev,
         resume: file,
-      }));
+      }))
 
       if (fieldErrors["resume"]) {
         setFieldErrors((prev) => ({
           ...prev,
           resume: null,
-        }));
+        }))
       }
     }
-  };
+  }
 
   const validateField = (name, value) => {
-    let error = null;
+    let error = null
     switch (name) {
       case "name": {
-        const nameSafe = validatePlainTextOnly(value);
+        const nameSafe = validatePlainTextOnly(value)
         if (nameSafe) {
-          error = nameSafe;
-          break;
+          error = nameSafe
+          break
         }
         if (formId === 5862) {
           if (value && value.trim() && value.trim().length < 2) {
-            error = "Name must be at least 2 characters";
+            error = "Name must be at least 2 characters"
           }
         } else {
           if (!value || !value.trim()) {
-            error = "Name is required";
+            error = "Name is required"
           } else if (value.trim().length < 2) {
-            error = "Name must be at least 2 characters";
+            error = "Name must be at least 2 characters"
           }
         }
-        break;
+        break
       }
       case "email":
         if (!value || !value.trim()) {
-          error = "Email is required";
+          error = "Email is required"
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-          error = "Please enter a valid email address";
+          error = "Please enter a valid email address"
         }
-        break;
+        break
       case "resume":
         // Only validate resume for careers form (5856)
         if (formId === 5856) {
           if (!value) {
-            error = "Resume is required";
+            error = "Resume is required"
           } else if (!/\.(pdf|doc|docx)$/i.test(value.name)) {
-            error = "Please upload a PDF, DOC, or DOCX file";
+            error = "Please upload a PDF, DOC, or DOCX file"
           }
         }
-        break;
+        break
       case "mobile":
-        error = validateMobileNumber(value);
-        break;
+        error = validateMobileNumber(value)
+        break
       case "purpose":
         if (
           formId !== 5855 &&
@@ -165,27 +165,27 @@ export const useFormHandler = (formId) => {
         ) {
           // Different error messages based on form type
           if (formId === 5856) {
-            error = "Please select a department";
+            error = "Please select a department"
           } else {
-            error = "Please select a property";
+            error = "Please select a property"
           }
         }
-        break;
+        break
       case "company":
         if (formId === 1186 && !value) {
-          error = "Company name is required";
+          error = "Company name is required"
         }
-        break;
+        break
       case "message": {
-        const messageSafe = validatePlainTextOnly(value);
+        const messageSafe = validatePlainTextOnly(value)
         if (messageSafe) {
-          error = messageSafe;
-          break;
+          error = messageSafe
+          break
         }
         if (value && value.trim() && value.trim().length < 10) {
-          error = "Message must be at least 10 characters";
+          error = "Message must be at least 10 characters"
         }
-        break;
+        break
       }
       case "consent":
         if (
@@ -196,119 +196,134 @@ export const useFormHandler = (formId) => {
             formId === 5877) &&
           !value
         ) {
-          error = "You must agree to the terms and conditions";
+          error = "You must agree to the terms and conditions"
         }
-        break;
+        break
       default:
-        break;
+        break
     }
-    return error;
-  };
+    return error
+  }
 
   const validateAllFields = () => {
-    const errors = {};
-    let hasError = false;
+    const errors = {}
+    let hasError = false
 
     Object.keys(formData).forEach((field) => {
-      const error = validateField(field, formData[field]);
+      const error = validateField(field, formData[field])
       if (error) {
-        errors[field] = error;
-        hasError = true;
+        errors[field] = error
+        hasError = true
       }
-    });
+    })
 
-    console.log("Validation errors:", errors);
-    setFieldErrors(errors);
-    return !hasError;
-  };
+    console.log("Validation errors:", errors)
+    setFieldErrors(errors)
+    return !hasError
+  }
 
   const handleSubmit = async (e, extraData = {}) => {
-    e.preventDefault();
-    console.log("Form submission started", formData);
+    e.preventDefault()
+    console.log("Form submission started", formData)
 
     if (!validateAllFields()) {
-      console.log("Validation failed - errors set");
-      return;
+      console.log("Validation failed - errors set")
+      return
     }
 
-    setIsSubmitting(true);
-    setSubmitStatus(null);
+    setIsSubmitting(true)
+    setSubmitStatus(null)
 
     try {
       // Clean mobile number - remove all non-digits and country code (guard for SSR/edge)
-      let cleanMobile = (formData.mobile || "").replace(/[^\d]/g, "");
+      let cleanMobile = (formData.mobile || "").replace(/[^\d]/g, "")
 
       // Remove country code if present (91 for India)
       if (cleanMobile.startsWith("91") && cleanMobile.length > 10) {
-        cleanMobile = cleanMobile.substring(2);
+        cleanMobile = cleanMobile.substring(2)
       }
 
       // Ensure only 10 digits
-      cleanMobile = cleanMobile.slice(0, 10);
+      cleanMobile = cleanMobile.slice(0, 10)
 
-      const cf7Data = new FormData();
-      const safeName = sanitizeText(formData.name || (formId === 5862 ? "" : "Not provided"), "name");
-      const safeMessage = sanitizeText(formData.message || "No message provided", "message");
+      const cf7Data = new FormData()
+      const safeName = sanitizeText(
+        formData.name || (formId === 5862 ? "" : "Not provided"),
+        "name",
+      )
+      const safeMessage = sanitizeText(
+        formData.message || "No message provided",
+        "message",
+      )
       // Some CF7 forms include both tags in mail templates, causing duplicates.
       // For 5877, send only the "your-*" fields.
       if (formId === 5877) {
-        cf7Data.append("your-name", safeName || (formId === 5862 ? "" : "Not provided"));
-        cf7Data.append("your-email", formData.email?.trim() || "");
+        cf7Data.append(
+          "name",
+          safeName || (formId === 5862 ? "" : "Not provided"),
+        )
+        cf7Data.append("email", formData.email?.trim() || "")
       } else {
-        cf7Data.append("name", safeName || (formId === 5862 ? "" : "Not provided"));
-        cf7Data.append("your-name", safeName || (formId === 5862 ? "" : "Not provided")); // CF7 forms that use your-name
-        cf7Data.append("email", formData.email?.trim() || "");
-        cf7Data.append("your-email", formData.email?.trim() || ""); // CF7 forms that use your-email
+        cf7Data.append(
+          "name",
+          safeName || (formId === 5862 ? "" : "Not provided"),
+        )
+        cf7Data.append(
+          "your-name",
+          safeName || (formId === 5862 ? "" : "Not provided"),
+        ) // CF7 forms that use your-name
+        cf7Data.append("email", formData.email?.trim() || "")
+        cf7Data.append("your-email", formData.email?.trim() || "") // CF7 forms that use your-email
       }
-      cf7Data.append("mobile", cleanMobile);
-      cf7Data.append("purpose", formData.purpose || "");
-      cf7Data.append("company", formData.company || "");
-      cf7Data.append("message", safeMessage || "No message provided");
+      cf7Data.append("mobile", cleanMobile)
+      cf7Data.append("purpose", formData.purpose || "")
+      cf7Data.append("company", formData.company || "")
+      cf7Data.append("message", safeMessage || "No message provided")
       if (extraData.recaptchaToken) {
-        cf7Data.append("g-recaptcha-response", extraData.recaptchaToken);
+        cf7Data.append("g-recaptcha-response", extraData.recaptchaToken)
       }
 
       // ✅ Append file object properly
       if (formData.resume) {
-        cf7Data.append("resume", formData.resume);
+        cf7Data.append("resume", formData.resume)
       } else {
-        cf7Data.append("resume", "No resume provided");
+        cf7Data.append("resume", "No resume provided")
       }
 
-      cf7Data.append("consent", formData.consent ? "Yes" : "No");
+      cf7Data.append("consent", formData.consent ? "Yes" : "No")
 
       const response = await fetch(
         `https://docs.charteredhousing.com/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`,
         {
           method: "POST",
           body: cf7Data,
-        }
-      );
+        },
+      )
 
-      const result = await response.json();
-      console.log("Response result:", result);
+      const result = await response.json()
+      console.log("Response result:", result)
 
       if (response.ok && result.status === "mail_sent") {
-        setSubmitStatus("success");
-        setFormData(defaultFormData);
-        setFieldErrors({});
+        setSubmitStatus("success")
+        setFormData(defaultFormData)
+        setFieldErrors({})
       } else {
-        setSubmitStatus("error");
-        console.error("Form submission error:", result);
+        setSubmitStatus("error")
+        console.error("Form submission error:", result)
       }
     } catch (error) {
-      setSubmitStatus("error");
-      console.error("Network error:", error);
+      setSubmitStatus("error")
+      console.error("Network error:", error)
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const resetForm = () => {
-    setFormData(defaultFormData);
-    setSubmitStatus(null);
-    setFieldErrors({});
-  };
+    setFormData(defaultFormData)
+    setSubmitStatus(null)
+    setFieldErrors({})
+  }
 
   return {
     formData,
@@ -324,5 +339,5 @@ export const useFormHandler = (formId) => {
     validateAllFields,
     resetForm,
     formId,
-  };
-};
+  }
+}
