@@ -97,7 +97,7 @@ const HeroBanner = () => {
             <form
               id={formId}
               onSubmit={handleSubmit}
-              className="mx-auto flex w-full max-w-6xl animate-[float_4s_ease-in-out_infinite] flex-col justify-center gap-3 rounded-2xl border-2 border-[#ED1C25] bg-white/95 px-4 py-4 shadow-2xl backdrop-blur-md md:flex-row md:items-center md:gap-3 md:px-5 md:py-5"
+              className="mx-auto flex w-full max-w-6xl  flex-col justify-center gap-3  border-2 border-[#ED1C25] bg-white px-4 py-4 shadow-2xl backdrop-blur-md md:flex-row md:items-center md:gap-3 md:px-5 md:py-5"
             >
               {/* Name */}
               <div className="md:w-[24%]">
@@ -188,7 +188,7 @@ const HeroBanner = () => {
             <form
               id={`${formId}-mobile`}
               onSubmit={handleSubmit}
-              className="mx-auto mt-8 flex w-full flex-col gap-4 rounded-2xl border-2 border-[#ED1C25] bg-white/90 px-4 py-5 shadow-xl backdrop-blur-md"
+              className="mx-auto mt-8 flex w-full flex-col gap-4  bg-white/90 px-4 py-5 shadow-xl backdrop-blur-md"
             >
               {/* Name */}
               <div>

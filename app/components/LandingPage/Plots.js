@@ -127,7 +127,7 @@ const Plots = () => {
             <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-white">
               {/* 1200 */}
               <div className="text-center">
-                <div className="roboto-serif-bold text-[64px] leading-none">
+                <div className="roboto-serif-bold text-[48px] leading-none">
                   <CountUp
                     end={1200}
                     duration={3}
@@ -146,7 +146,7 @@ const Plots = () => {
 
               {/* 1500 */}
               <div className="text-center">
-                <div className="roboto-serif-bold text-[64px] leading-none">
+                <div className="roboto-serif-bold text-[48px] leading-none">
                   <CountUp
                     end={1500}
                     duration={3}
@@ -165,7 +165,7 @@ const Plots = () => {
 
               {/* 1500+ */}
               <div className="text-center">
-                <div className="roboto-serif-bold text-[64px] leading-none">
+                <div className="roboto-serif-bold text-[48px] leading-none">
                   <CountUp
                     end={1500}
                     duration={3}
