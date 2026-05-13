@@ -122,13 +122,19 @@ const Booking = () => {
   }
 
   return (
-    <div className="px-4 py-8 md:px-0 md:py-10">
+    <div
+  className="px-4 py-8 md:px-0 md:py-10"
+  style={{
+    background:
+      "linear-gradient(180deg, rgba(217, 242, 255, 0.60) 0%, rgba(247, 232, 214, 0.60) 100%)",
+  }}
+>
       <div className="mx-auto max-w-7xl">
-        <h2 className="roboto-serif-regular text-center text-3xl leading-tight text-[#4E372A] md:text-5xl">
+        <h2 className="Helvetica font-bold text-center text-3xl leading-tight text-[#4E372A] md:text-5xl">
           Secure Your Plot in a Growing Corridor
         </h2>
 
-        <p className="mt-4 text-center text-[#646464]">
+        <p className=" Helvetica mt-4 text-center text-[#000000]">
           Plots are limited within a 10-acre community. Speak with our team to
           understand pricing, availability, and site visit scheduling.
         </p>
@@ -144,7 +150,7 @@ const Booking = () => {
         <form onSubmit={handleSubmit} id={formId}>
           <div className="mx-auto flex w-full max-w-5xl flex-col items-center">
             <div className="mt-10 w-full border border-[#E7DFD8] px-4 py-6 md:px-10 md:py-8">
-              <h3 className="roboto-serif-regular text-center text-xl text-[#646464] md:text-4xl">
+              <h3 className="Helvetica text-center text-xl text-black md:text-4xl">
                 Please Fill Up the Form to Book a Site Visit
               </h3>
 

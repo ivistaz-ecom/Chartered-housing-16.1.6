@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "next/image"
 
-const areaImageSrc = "/landing-page/area.png"
+const areaImageSrc = "/landing-page/plot.webp"
 const pathImageSrc = "/landing-page/path.svg"
 const arrowImageSrc = "/landing-page/arrrow.png"
 

@@ -18,7 +18,7 @@ const Plots = () => {
         <div className="mt-8 hidden md:block  mx-auto max-w-6xl shadow-md">
           <div className="relative  w-full overflow-hidden">
             <Image
-              src="/landing-page/plot-desk.png"
+              src="/landing-page/plot.webp"
               alt="Plot sizes desktop"
               width={1600}
               height={600}
@@ -108,7 +108,7 @@ const Plots = () => {
         <div className="mt-8 md:hidden">
           <div className="relative mx-auto w-full max-w-[420px] overflow-hidden">
             <Image
-              src="/landing-page/plot-mob.png"
+              src="/landing-page/Plots-sizes-Mob.webp"
               alt="Plot sizes mobile"
               width={900}
               height={1800}
