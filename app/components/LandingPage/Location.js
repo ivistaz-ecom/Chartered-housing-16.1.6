@@ -7,13 +7,13 @@ const arrowImageSrc = "/landing-page/arrrow.png"
 
 const points = [
   "Easy access to Nelamangala Railway Station",
-  "20-minute from NH48/Nelamangala Junction",
+  "20 minutes from NH48/Nelamangala Junction",
   <>
-    30-minute from Doddaballapur/
+    30 minutes from Doddaballapur/
     <br />
     Satellite Town Ring Road (STRR)
   </>,
-  "10-minute from Chikka Madhure Temple",
+  "10 minutes from Chikka Madhure Temple",
 ]
 
 const Location = () => {
@@ -51,7 +51,7 @@ const Location = () => {
                 />
               </div>
 
-              <div className="order-1 md:order-2">
+              <div className="order-1 md:order-2 md:pr-20">
                 <p className="text-[16px] leading-relaxed md:text-[18px] text-black!">
                   A decade ago, Chartered Veda plots were priced at <b>₹1,800/sq.ft</b>.
                   Today they trade at <b>₹5,500/sq.ft</b>. Chartered Gulmohar Bengaluru

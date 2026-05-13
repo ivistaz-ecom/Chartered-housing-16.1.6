@@ -291,8 +291,8 @@ const HeroBanner = () => {
       </section>
 
       {/* Bottom Strip */}
-      <div className="bg-[#000000] px-2 py-4 text-center">
-        <p className="mx-auto w-full text-base leading-relaxed md:whitespace-nowrap text-white!">
+      <div className="bg-[#000000] px-2 py-4 text-center ">
+        <p className="mx-auto w-full !text-[16px] leading-relaxed md:whitespace-nowrap text-white!">
           RERA Registered · PRM/KA/RERA/1250/307/PR/110226/008465{" "}
           <span className="text-[#EAC57B]">|</span> NPA Approved Layout{" "}
           <span className="text-[#EAC57B]">|</span> 36+ Years of Chartered

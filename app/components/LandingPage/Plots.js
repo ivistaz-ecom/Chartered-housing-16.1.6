@@ -21,8 +21,8 @@ const Plots = () => {
               src="/landing-page/plot.webp"
               alt="Plot sizes desktop"
               width={1600}
-              height={600}
-              className="h-auto w-full object-cover"
+              height={300}
+              className="h-[65vh] w-full object-cover"
               priority={false}
             />
 
@@ -111,7 +111,7 @@ const Plots = () => {
               src="/landing-page/Plots-sizes-Mob.webp"
               alt="Plot sizes mobile"
               width={900}
-              height={1800}
+              height={1200}
               className="h-auto w-full object-cover"
               priority={false}
             />

@@ -14,19 +14,43 @@ const amenities = [
   },
   {
     icon: "/landing-page/ODcTBU.svg",
-    title: "Open play areas",
+    title: (
+      <>
+        Open play
+        <br />
+        areas
+      </>
+    ),
   },
   {
     icon: "/landing-page/Group.svg",
-    title: "Landscaped parks",
+    title: (
+      <>
+        Landscaped
+        <br />
+        parks
+      </>
+    ),
   },
   {
     icon: "/landing-page/brCPy5.svg",
-    title: "Indoor recreation space",
+    title: (
+      <>
+        Indoor recreation
+        <br />
+        space
+      </>
+    ),
   },
   {
     icon: "/landing-page/vsRwQ1.tif.svg",
-    title: "Avenue plantations",
+    title: (
+      <>
+        Avenue
+        <br />
+        plantations
+      </>
+    ),
   },
 ]
 
