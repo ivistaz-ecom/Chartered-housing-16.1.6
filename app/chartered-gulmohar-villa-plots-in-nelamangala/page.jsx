@@ -1,8 +1,14 @@
 import React from "react";
 import LandingPage from "../components/LandingPage";
 
+
 const Page = () => {
-  return <LandingPage />;
+  return (
+    <>
+      
+      <LandingPage />
+    </>
+  );
 };
 
 export default Page;

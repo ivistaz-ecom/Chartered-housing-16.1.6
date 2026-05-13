@@ -10,7 +10,7 @@ const HeaderSelector = () => {
 
   const normalizedPath = pathname?.replace(/\/+$/, "") || "/"
 
-  const landingPages = ["/landing-page", "/thank-you"]
+  const landingPages = ["/chartered-gulmohar-villa-plots-in-nelamangala", "/thank-you"]
 
   const isLandingPage = landingPages.includes(normalizedPath)
 
