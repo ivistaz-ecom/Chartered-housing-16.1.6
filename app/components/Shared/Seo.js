@@ -61,11 +61,14 @@ function NextSeo({ title, description, path, metaImage }) {
     }
     canonicalLink.setAttribute('href', `${domainName}${path}`)
 
-    // Update or create JSON-LD script
-    let jsonLdScript = document.querySelector('script[type="application/ld+json"]')
+    // Managed WebSite JSON-LD only — pages may add their own ld+json without this overwriting it
+    let jsonLdScript = document.querySelector(
+      'script[type="application/ld+json"][data-seo-managed="website"]'
+    )
     if (!jsonLdScript) {
       jsonLdScript = document.createElement('script')
       jsonLdScript.setAttribute('type', 'application/ld+json')
+      jsonLdScript.setAttribute('data-seo-managed', 'website')
       document.head.appendChild(jsonLdScript)
     }
     
