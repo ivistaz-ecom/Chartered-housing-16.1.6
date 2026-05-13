@@ -128,68 +128,60 @@ const HeroBanner = () => {
     >
       
       {/* Name */}
-      <div>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="h-[40px] w-[230px] rounded-[3px] border border-[#555] bg-transparent px-5 text-[16px] font-[Nunito] text-[#5C5C5C] outline-none placeholder:text-[#666]"
-        />
+     {/* Name */}
+<div>
+  <TextInputField
+    placeholder="Your Name"
+    name="name"
+    value={formData.name}
+    onChange={handleChange}
+  />
 
-        {fieldErrors.name && (
-          <span className="mt-1 block text-xs text-red-500">
-            {fieldErrors.name}
-          </span>
-        )}
-      </div>
+  {fieldErrors.name && (
+    <span className="mt-1 block text-xs text-red-500">
+      {fieldErrors.name}
+    </span>
+  )}
+</div>
 
-      {/* Mobile */}
-      <div>
-        <input
-          type="tel"
-          placeholder="Mobile Number"
-          value={formData.mobile}
-          onChange={(e) =>
-            handleSelectChange("mobile", e.target.value)
-          }
-          className="h-[40px] w-[230px] rounded-[3px] border border-[#555] bg-transparent px-5 text-[16px] font-[Nunito] text-[#5C5C5C] outline-none placeholder:text-[#666]"
-        />
+{/* Phone */}
+<div>
+  <PhoneInputField
+    placeholder="Your Mobile Number"
+    value={formData.mobile}
+    onChange={(val) => handleSelectChange("mobile", val)}
+  />
 
-        {fieldErrors.mobile && (
-          <span className="mt-1 block text-xs text-red-500">
-            {fieldErrors.mobile}
-          </span>
-        )}
-      </div>
+  {fieldErrors.mobile && (
+    <span className="mt-1 block text-xs text-red-500">
+      {fieldErrors.mobile}
+    </span>
+  )}
+</div>
 
-      {/* Email */}
-      <div>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={formData.email}
-          onChange={handleChange}
-          className="h-[40px] w-[230px] rounded-[3px] border border-[#555] bg-transparent px-5 text-[16px] font-[Nunito] text-[#5C5C5C] outline-none placeholder:text-[#666]"
-        />
+{/* Email */}
+<div>
+  <TextInputField
+    type="email"
+    placeholder="Your Email Address"
+    name="email"
+    value={formData.email}
+    onChange={handleChange}
+  />
 
-        {fieldErrors.email && (
-          <span className="mt-1 block text-xs text-red-500">
-            {fieldErrors.email}
-          </span>
-        )}
-      </div>
+  {fieldErrors.email && (
+    <span className="mt-1 block text-xs text-red-500">
+      {fieldErrors.email}
+    </span>
+  )}
+</div>
 
-      {/* Submit Button */}
-      <button
-  type="submit"
-  disabled={isSubmitting}
-  className="mt-1 h-[40px] w-full bg-[#FF1D25] text-[16px] font-bold text-white transition-all duration-300 hover:bg-white hover:text-[#FF1D25] hover:border hover:border-[#FF1D25]"
->
-  {isSubmitting ? "Submitting..." : "Book a site visit"}
-</button>
+{/* Submit Button */}
+<div className="mt-1">
+  <Button type="submit" disabled={isSubmitting}>
+    {isSubmitting ? "Submitting..." : "Book a Site Visit"}
+  </Button>
+</div>
     </form>
   </div>
 
