@@ -122,20 +122,21 @@ export default function TestimonialsCarousel() {
                 height={120}
                 className="rounded-full object-cover flex-shrink-0"
               />
-              <div className="flex flex-col justify-between flex-1 h-full">
-                <h3 className="text-[#646464] mb-4 text-lg leading-relaxed overflow-hidden">
-                  {testimonials[current].text}
-                </h3>
+              <div className="flex flex-col justify-between flex-1 h-full font-[Nunito]">
+  <h3 className="text-[#646464] mb-4 text-lg leading-relaxed overflow-hidden font-[Nunito]">
+    {testimonials[current].text}
+  </h3>
 
-                <div className="mt-auto">
-                  <h4 className="text-[#ED1C24] py-3 font-semibold text-2xl nunito-regular">
-                    {testimonials[current].name}
-                  </h4>
-                  <h5 className="text-[#646464] text-lg nunito-regular">
-                    {testimonials[current].role}
-                  </h5>
-                </div>
-              </div>
+  <div className="mt-auto">
+    <h4 className="text-[#ED1C24] py-3 font-semibold text-2xl font-[Nunito]">
+      {testimonials[current].name}
+    </h4>
+
+    <h5 className="text-[#646464] text-lg font-[Nunito]">
+      {testimonials[current].role}
+    </h5>
+  </div>
+</div>
             </motion.div>
           </AnimatePresence>
         </div>

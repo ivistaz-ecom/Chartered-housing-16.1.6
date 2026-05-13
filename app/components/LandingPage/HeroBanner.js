@@ -38,10 +38,10 @@ const HeroBanner = () => {
   return (
     <>
       <section className="relative w-full pt-32">
-        <div className="relative w-full md:min-h-[700px]">
+        <div className="relative w-full md:min-h-[700px] min-h-[700px]">
           {/* Desktop Banner */}
           <Image
-            src="/landing-page/desk-banner.png"
+            src="/landing-page/banner_desk.png"
             alt="Chartered Gulmohar premium villa plots banner"
             fill
             priority
@@ -50,16 +50,16 @@ const HeroBanner = () => {
 
           {/* Mobile Banner */}
           <Image
-            src="/landing-page/mobile-banner.png"
+            src="/landing-page/mob-banner.png"
             alt="Chartered Gulmohar mobile top banner"
             width={900}
-            height={460}
+            height={660}
             priority
-            className="block h-[250px] w-full object-cover object-top md:hidden"
+            className="block h-[900px] w-full object-cover object-top md:hidden"
           />
 
           {/* Desktop Heading */}
-          <div className="absolute inset-x-0 top-[17%] z-10 hidden w-[400px] text-center md:left-[4%] md:top-[25%] md:block md:w-[550px]">
+          {/* <div className="absolute inset-x-0 top-[17%] z-10 hidden w-[400px] text-center md:left-[4%] md:top-[25%] md:block md:w-[550px]">
             <h1 className="roboto-serif-regular text-[32px] leading-tight text-[#EAC57B] md:text-[48px]">
               Premium Villa Plots
               <br />
@@ -71,94 +71,135 @@ const HeroBanner = () => {
             <p className="mt-3 text-center text-3xl text-white! md:text-[34px]">
               Invest in Bangalore&apos;s Fast-Growing Corridor
             </p>
-          </div>
+          </div> */}
 
           {/* Desktop Content */}
           <div className="absolute inset-x-0 top-[42%] z-10 hidden px-6 text-left md:left-[4%] md:top-[50%] md:block md:px-0">
             <div className="mx-0 w-full max-w-[550px] md:mx-38">
-              <Image
+              {/* <Image
                 src="/landing-page/gulmohar.svg"
                 alt="Chartered Gulmohar"
                 width={300}
                 height={90}
                 className="h-auto w-full max-w-[320px] md:max-w-[200px]"
-              />
+              /> */}
             </div>
 
-            <p className="nunito-regular mt-7 text-[32px] leading-snug text-white! md:w-[600px]">
+            {/* <p className="nunito-regular mt-7 text-[32px] leading-snug text-white! md:w-[600px]">
               10 Acres <span className="text-[#EAC57B]">|</span> Plotted
               Development <span className="text-[#EAC57B]">|</span> Peaceful
               Living &amp; Long-term Value
-            </p>
+            </p> */}
           </div>
 
           {/* Desktop Floating Form */}
-          <div className="fixed inset-x-0 bottom-2 z-50 hidden px-4 md:block md:px-8">
-            <form
-              id={formId}
-              onSubmit={handleSubmit}
-              className="mx-auto flex w-full max-w-6xl  flex-col justify-center gap-3  border-2 border-[#ED1C25] bg-white px-4 py-4 shadow-2xl backdrop-blur-md md:flex-row md:items-center md:gap-3 md:px-5 md:py-5"
-            >
-              {/* Name */}
-              <div className="md:w-[24%]">
-                <TextInputField
-                  placeholder="Your Name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                />
+         {/* Right Side Form + Logos */}
+         <div className="absolute bottom-[40px] right-[55px] z-30 hidden md:block">
+  
+  {/* Logos */}
+  <div className="absolute -left-[400px] bottom-[30px] flex items-end gap-5">
+    
+    {/* NPA */}
+    <Image
+      src="/landing-page/NPA_seal.png"
+      alt="NPA Approved"
+      width={90}
+      height={90}
+      className="object-contain"
+    />
 
-                {fieldErrors.name && (
-                  <span className="mt-1 block text-xs text-red-500">
-                    {fieldErrors.name}
-                  </span>
-                )}
-              </div>
+    {/* RERA */}
+    <Image
+      src="/landing-page/rera_icon.png"
+      alt="RERA Registered"
+      width={90}
+      height={90}
+      className="object-contain"
+    />
+  </div>
 
-              {/* Phone */}
-              <div className="md:w-[27%]">
-                <PhoneInputField
-                  placeholder="Your Mobile Number"
-                  value={formData.mobile}
-                  onChange={(val) => handleSelectChange("mobile", val)}
-                />
+  {/* Form Card */}
+  <div className="mt-[65px] w-[250px] md:ml-20 rounded-[6px] bg-[#ffffff] px-3 py-3 shadow-2xl">
+    
+    <form
+      id={formId}
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-2"
+    >
+      
+      {/* Name */}
+      <div>
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleChange}
+          className="h-[40px] w-[230px] rounded-[3px] border border-[#555] bg-transparent px-5 text-[16px] font-[Nunito] text-[#5C5C5C] outline-none placeholder:text-[#666]"
+        />
 
-                {fieldErrors.mobile && (
-                  <span className="mt-1 block text-xs text-red-500">
-                    {fieldErrors.mobile}
-                  </span>
-                )}
-              </div>
+        {fieldErrors.name && (
+          <span className="mt-1 block text-xs text-red-500">
+            {fieldErrors.name}
+          </span>
+        )}
+      </div>
 
-              {/* Email */}
-              <div className="md:w-[25%]">
-                <TextInputField
-                  type="email"
-                  placeholder="Your Email Address"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
+      {/* Mobile */}
+      <div>
+        <input
+          type="tel"
+          placeholder="Mobile Number"
+          value={formData.mobile}
+          onChange={(e) =>
+            handleSelectChange("mobile", e.target.value)
+          }
+          className="h-[40px] w-[230px] rounded-[3px] border border-[#555] bg-transparent px-5 text-[16px] font-[Nunito] text-[#5C5C5C] outline-none placeholder:text-[#666]"
+        />
 
-                {fieldErrors.email && (
-                  <span className="mt-1 block text-xs text-red-500">
-                    {fieldErrors.email}
-                  </span>
-                )}
-              </div>
+        {fieldErrors.mobile && (
+          <span className="mt-1 block text-xs text-red-500">
+            {fieldErrors.mobile}
+          </span>
+        )}
+      </div>
 
-              {/* Button */}
-              <div className="mt-2 md:mt-0 md:w-[16%]">
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Submitting..." : "Book a Site Visit"}
-                </Button>
-              </div>
-            </form>
-          </div>
+      {/* Email */}
+      <div>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          value={formData.email}
+          onChange={handleChange}
+          className="h-[40px] w-[230px] rounded-[3px] border border-[#555] bg-transparent px-5 text-[16px] font-[Nunito] text-[#5C5C5C] outline-none placeholder:text-[#666]"
+        />
+
+        {fieldErrors.email && (
+          <span className="mt-1 block text-xs text-red-500">
+            {fieldErrors.email}
+          </span>
+        )}
+      </div>
+
+      {/* Submit Button */}
+      <button
+  type="submit"
+  disabled={isSubmitting}
+  className="mt-1 h-[40px] w-full bg-[#FF1D25] text-[16px] font-bold text-white transition-all duration-300 hover:bg-white hover:text-[#FF1D25] hover:border hover:border-[#FF1D25]"
+>
+  {isSubmitting ? "Submitting..." : "Book a site visit"}
+</button>
+    </form>
+  </div>
+
+ 
+  
+</div>
 
           {/* Mobile Section */}
-          <div className="bg-[#486C43] px-5 py-8 text-center md:hidden">
-            <h1 className="roboto-serif-regular text-[32px] leading-tight text-[#EAC57B]">
+          <div className="bg-[#486C43] px-5 py-6 text-center md:hidden">
+            {/* <h1 className="roboto-serif-regular text-[32px] leading-tight text-[#EAC57B]">
               Premium Villa Plots
               <br />
               in Nelamangala
@@ -182,13 +223,13 @@ const HeroBanner = () => {
               10 Acres <span className="text-[#EAC57B]">|</span> Plotted
               Development <span className="text-[#EAC57B]">|</span> Peaceful
               Living &amp; Long-term Value
-            </p>
+            </p> */}
 
             {/* Mobile Form */}
             <form
               id={`${formId}-mobile`}
               onSubmit={handleSubmit}
-              className="mx-auto mt-8 flex w-full flex-col gap-4  bg-white/90 px-4 py-5 shadow-xl backdrop-blur-md"
+              className="mx-auto mt-0 flex w-full flex-col gap-4  bg-white/90 px-4 py-5 shadow-xl backdrop-blur-md"
             >
               {/* Name */}
               <div>
@@ -250,7 +291,7 @@ const HeroBanner = () => {
       </section>
 
       {/* Bottom Strip */}
-      <div className="bg-[#22391F] px-2 py-4 text-center">
+      <div className="bg-[#000000] px-2 py-4 text-center">
         <p className="mx-auto w-full text-base leading-relaxed md:whitespace-nowrap text-white!">
           RERA Registered · PRM/KA/RERA/1250/307/PR/110226/008465{" "}
           <span className="text-[#EAC57B]">|</span> NPA Approved Layout{" "}

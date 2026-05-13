@@ -15,14 +15,14 @@ const Growth = () => {
         </h2>
         <div className="mt-7">
           <Image
-            src="/landing-page/growth.png"
+            src="/landing-page/growthnum.png"
             alt="Price growth from Rs. 1,800/sq. ft. in 2016 to Rs. 5,500/sq. ft. in 2026"
             width={1200}
             height={409}
             className="h-auto w-full"
           />
         </div>
-        <p className="my-4 text-center text-[16px]!  md:text-xl! nunito-extrabold text-black!">
+        <p className="my-4 text-center text-[16px]!  md:text-xl! nunito-bold text-black!">
           Chartered Veda (Winner of CREDAI Award for the Best Plotted
           Development in 2019)
         </p>
