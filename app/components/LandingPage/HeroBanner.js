@@ -101,7 +101,7 @@ const HeroBanner = () => {
     
     {/* NPA */}
     <Image
-      src="/landing-page/NPA_seal.png"
+      src="/landing-page/NPA_Seal.png"
       alt="NPA Approved"
       width={90}
       height={90}
@@ -110,7 +110,7 @@ const HeroBanner = () => {
 
     {/* RERA */}
     <Image
-      src="/landing-page/rera_icon.png"
+      src="/landing-page/RERA_icon.png"
       alt="RERA Registered"
       width={90}
       height={90}
