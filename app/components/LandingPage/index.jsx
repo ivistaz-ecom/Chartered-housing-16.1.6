@@ -7,6 +7,7 @@ import Plots from "./Plots"
 import Booking from "./Booking"
 import Gulmohar from "./Gulmohar"
 import TestimonialsCarousel from "../Home/TestimonialsCarousel"
+import InterestedInCharted from "./InterestedInCharted"
 
 const LandingPage = () => {
   return (
@@ -19,6 +20,7 @@ const LandingPage = () => {
       <div className="px-4 md:px-0">
         <TestimonialsCarousel />
       </div>
+      <InterestedInCharted />
       {/* <Gulmohar /> */}
       <Booking />
     </>

@@ -10,12 +10,12 @@ const Growth = () => {
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-4">
-        <h2 className="roboto-serif-regular text-center text-[32px] leading-tight text-[#4E372A] md:text-[48px]">
+        <h1 className="roboto-serif-regular text-center text-[32px] leading-tight text-[#4E372A] md:text-[48px]">
           A Corridor with Proven Growth
-        </h2>
+        </h1>
         <div className="mt-7">
           <Image
-            src="/landing-page/growthnum.png"
+            src="/landing-page/3x_Growth.webp"
             alt="Price growth from Rs. 1,800/sq. ft. in 2016 to Rs. 5,500/sq. ft. in 2026"
             width={1200}
             height={409}

@@ -41,7 +41,7 @@ const HeroBanner = () => {
         <div className="relative w-full md:min-h-[700px] min-h-[700px]">
           {/* Desktop Banner */}
           <Image
-            src="/landing-page/banner_desk.png"
+            src="/landing-page/ban_desktop.webp"
             alt="Chartered Gulmohar premium villa plots banner"
             fill
             priority
@@ -50,7 +50,7 @@ const HeroBanner = () => {
 
           {/* Mobile Banner */}
           <Image
-            src="/landing-page/mob-banner.png"
+            src="/landing-page/Mobile_Ban.webp"
             alt="Chartered Gulmohar mobile top banner"
             width={900}
             height={660}
