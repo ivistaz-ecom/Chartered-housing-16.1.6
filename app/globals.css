@@ -266,3 +266,30 @@ p {
     transform: translateY(-10px);
   }
 }
+
+/* Landing Page */
+
+@font-face {
+  font-family: "helvetica-black";
+  src: url("/fonts/helvetica-black.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.helvetica-black {
+  font-family: "helvetica-black", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.helvetica-normal {
+  font-family: Helvetica, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.helvetica-bold {
+  font-family: Helvetica, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}

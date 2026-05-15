@@ -5,14 +5,14 @@ import LifeStyle from "./LifeStyle"
 import Location from "./Location"
 import Plots from "./Plots"
 import Booking from "./Booking"
-import Gulmohar from "./Gulmohar"
 import TestimonialsCarousel from "../Home/TestimonialsCarousel"
-import InterestedInCharted from "./InterestedInCharted"
+import EnquiryNowButton from "../Shared/EnquiryNowButton"
 
 const LandingPage = () => {
   return (
     <>
       <HeroBanner />
+      <EnquiryNowButton/>
       <Growth />
       <Location />
       <Plots />
@@ -20,8 +20,6 @@ const LandingPage = () => {
       <div className="px-4 md:px-0">
         <TestimonialsCarousel />
       </div>
-      <InterestedInCharted />
-      {/* <Gulmohar /> */}
       <Booking />
     </>
   )

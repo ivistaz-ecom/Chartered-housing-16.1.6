@@ -1,27 +1,27 @@
-"use client";
+"use client"
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import React, { useEffect, useState } from "react"
+import Link from "next/link"
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 100) {
-        setIsScrolled(true);
+        setIsScrolled(true)
       } else {
-        setIsScrolled(false);
+        setIsScrolled(false)
       }
-    };
+    }
 
     // Run on mount
-    handleScroll();
+    handleScroll()
 
     // Listen for scroll
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
   return (
     <>
       {/* Logo - Global on all pages */}
@@ -57,7 +57,7 @@ const Header = () => {
         />
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

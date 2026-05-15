@@ -7,9 +7,9 @@ import Button from "../Shared/Button"
 
 const Plots = () => {
   return (
-    <section className="px-4 pb-8 md:px-0 md:pb-14">
+    <section className="px-4 pb-8 md:px-0 md:pb-10">
       <div className="mx-auto max-w-7xl text-center">
-        <h3 className="roboto-serif-regular text-[32px] text-[#4E372A] md:text-[48px]">
+        <h3 className="text-[32px] helvetica-black md:text-[38px]">
           Premium villa plots available in multiple sizes
         </h3>
 
@@ -22,7 +22,7 @@ const Plots = () => {
               alt="Plot sizes desktop"
               width={1600}
               height={300}
-              className="h-[65vh] w-full object-cover"
+              className="h-[50vh] w-full object-cover"
               priority={false}
             />
 
@@ -36,20 +36,21 @@ const Plots = () => {
 
             {/* numbers row */}
             <div className="absolute inset-0 flex flex-col items-center justify-center px-8 text-white">
-              <div className="flex w-full items-end justify-center gap-10">
+              <div className="flex w-full items-end justify-center gap-10 helvetica-black">
                 {/* 1200 */}
                 <div className="text-center">
-                  <div className="roboto-serif-bold text-[72px] leading-none">
+                  <div className="helvetica-black text-[72px] leading-none">
                     <CountUp
                       end={1200}
                       duration={3}
                       separator=","
                       enableScrollSpy
                       scrollSpyOnce
+                      className="helvetica-black"
                     />
                   </div>
 
-                  <div className="mt-1 text-sm tracking-wide roboto-serif-semibold">
+                  <div className="mt-1 text-sm tracking-wide helvetica-black">
                     sq.ft · Villa Plot
                   </div>
                 </div>
@@ -58,17 +59,18 @@ const Plots = () => {
 
                 {/* 1500 */}
                 <div className="text-center">
-                  <div className="roboto-serif-bold text-[72px] leading-none">
+                  <div className="helvetica-black text-[72px] leading-none">
                     <CountUp
                       end={1500}
                       duration={3}
                       separator=","
                       enableScrollSpy
                       scrollSpyOnce
+                      className="helvetica-black"
                     />
                   </div>
 
-                  <div className="mt-1 text-sm tracking-wide roboto-serif-semibold">
+                  <div className="mt-1 text-sm tracking-wide helvetica-black">
                     sq.ft · Villa Plot
                   </div>
                 </div>
@@ -77,31 +79,32 @@ const Plots = () => {
 
                 {/* 1500+ */}
                 <div className="text-center">
-                  <div className="roboto-serif-bold text-[72px] leading-none">
+                  <div className="text-[72px] leading-none">
                     <CountUp
                       end={1500}
                       duration={3}
                       separator=","
                       enableScrollSpy
                       scrollSpyOnce
+                      className="helvetica-black"
                     />
                     +
                   </div>
 
-                  <div className="mt-1 text-sm tracking-wide roboto-serif-semibold">
+                  <div className="mt-1 text-sm tracking-wide helvetica-black">
                     sq.ft · Villa Plot
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 roboto-serif-regular text-3xl text-[#FFE6B3]">
+              <div className="mt-6 helvetica-black text-3xl text-white">
                 Limited plots available.
               </div>
+              <p className="helvetica-normal py-6 text-xl text-white! md:text-[24px]!">
+                Pricing varies based on size and location within the layout.
+              </p>
             </div>
           </div>
-          <p className="nunito-normal py-6 text-xl text-[#486C43]! md:text-[28px]!">
-            Pricing varies based on size and location within the layout.
-          </p>
         </div>
 
         {/* Mobile */}
@@ -127,17 +130,18 @@ const Plots = () => {
             <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-white">
               {/* 1200 */}
               <div className="text-center">
-                <div className="roboto-serif-bold text-[48px] leading-none">
+                <div className="text-[48px] leading-none">
                   <CountUp
                     end={1200}
                     duration={3}
                     separator=","
                     enableScrollSpy
                     scrollSpyOnce
+                    className="helvetica-black"
                   />
                 </div>
 
-                <div className="mt-2 text-sm roboto-serif-semibold">
+                <div className="mt-2 text-sm helvetica-black">
                   sq.ft · Villa Plot
                 </div>
               </div>
@@ -146,17 +150,18 @@ const Plots = () => {
 
               {/* 1500 */}
               <div className="text-center">
-                <div className="roboto-serif-bold text-[48px] leading-none">
+                <div className="text-[48px] leading-none">
                   <CountUp
                     end={1500}
                     duration={3}
                     separator=","
                     enableScrollSpy
                     scrollSpyOnce
+                    className="helvetica-black"
                   />
                 </div>
 
-                <div className="mt-2 text-sm  roboto-serif-semibold">
+                <div className="mt-2 text-sm helvetica-black">
                   sq.ft · Villa Plot
                 </div>
               </div>
@@ -165,18 +170,19 @@ const Plots = () => {
 
               {/* 1500+ */}
               <div className="text-center">
-                <div className="roboto-serif-bold text-[48px] leading-none">
+                <div className=" text-[48px] leading-none">
                   <CountUp
                     end={1500}
                     duration={3}
                     separator=","
                     enableScrollSpy
                     scrollSpyOnce
+                    className="helvetica-black"
                   />
                   +
                 </div>
 
-                <div className="mt-2 text-sm roboto-serif-bold">
+                <div className="mt-2 text-sm helvetica-black">
                   sq.ft · Villa Plot
                 </div>
               </div>
