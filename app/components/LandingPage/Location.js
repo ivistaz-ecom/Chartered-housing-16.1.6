@@ -18,9 +18,8 @@ const points = [
 
 const Location = () => {
   return (
-    <section className="relative w-full overflow-hidden pb-8 md:pb-14">
+    <section className="relative w-full overflow-hidden pb-8 md:pb-10">
       <div className="relative mx-auto grid min-h-[600px] grid-cols-1 overflow-hidden md:w-full md:grid-cols-[35%_65%]">
-        
         <div className="relative min-h-[300px] md:min-h-[600px]">
           <Image
             src={areaImageSrc}
@@ -34,13 +33,11 @@ const Location = () => {
 
         <div className="bg-[#FFE6B3] px-4 py-7 md:px-8 md:py-10">
           <div className="mx-auto flex h-full max-w-[960px] flex-col">
-            
-            <h2 className="roboto-serif-regular text-center text-[32px] leading-tight text-[#4E372A] md:text-[48px]">
+            <h2 className="helvetica-black text-center text-[32px] md:text-[38px]">
               Location Advantages
             </h2>
 
             <div className="mt-5 grid flex-1 grid-cols-1 gap-5 md:mt-8 md:grid-cols-[44%_56%] md:gap-10">
-              
               <div className="order-2 relative min-h-[250px] md:order-1 md:min-h-[430px]">
                 <Image
                   src={pathImageSrc}
@@ -52,10 +49,13 @@ const Location = () => {
               </div>
 
               <div className="order-1 md:order-2 md:pr-20">
-                <p className="text-[16px] leading-relaxed md:text-[18px] text-black!">
-                  A decade ago, Chartered Veda plots were priced at <b>₹1,800/sq.ft</b>.
-                  Today they trade at <b>₹5,500/sq.ft</b>. Chartered Gulmohar Bengaluru
-                  is in the same corridor at the early stage of that same curve.
+                <p className="text-[16px] leading-relaxed md:text-[18px] text-black! helvetica-normal">
+                  A decade ago, Chartered Veda plots were priced at{" "}
+                  <span className="helvetica-black">₹1,800/sq.ft</span>. Today
+                  they trade at{" "}
+                  <span className="helvetica-black">₹5,500/sq.ft</span>.
+                  Chartered Gulmohar Bengaluru is in the same corridor at the
+                  early stage of that same curve.
                 </p>
 
                 <div className="mt-3">
@@ -76,14 +76,13 @@ const Location = () => {
                         className="mt-0.5 h-[15px] w-[15px] shrink-0"
                       />
 
-                      <p className="m-0 text-[16px] leading-snug md:text-[18px] text-black!">
+                      <p className="m-0 text-[16px] leading-snug md:text-[18px] text-black! helvetica-normal">
                         {point}
                       </p>
                     </div>
                   ))}
                 </div>
               </div>
-
             </div>
           </div>
         </div>

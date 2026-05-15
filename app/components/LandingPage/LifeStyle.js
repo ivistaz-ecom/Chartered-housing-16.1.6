@@ -84,7 +84,7 @@ const LifeStyle = () => {
   return (
     <section className="px-4 md:px-0">
       <div className="mx-auto max-w-7xl">
-        <h2 className="roboto-serif-regular text-center text-[32px] text-[#4E372A] md:text-[48px]">
+        <h2 className="helvetica-black text-center text-[32px]  md:text-[38px]">
           Lifestyle & Amenities
         </h2>
 
@@ -153,7 +153,7 @@ const LifeStyle = () => {
           </div>
         </div>
 
-        <h3 className="roboto-serif-regular mt-10 text-center text-4xl text-[#4E372A] md:mt-14 md:text-5xl">
+        <h3 className="helvetica-black mt-10 text-center text-[32px]  md:mt-10 md:text-[38px]">
           Trust Built Across Projects
         </h3>
       </div>

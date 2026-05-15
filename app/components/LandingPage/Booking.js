@@ -3,10 +3,9 @@
 import Script from "next/script"
 import { useRef, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-
 import { useFormHandler } from "@/hooks/useFormHandler"
-import { PhoneInputField, TextInputField } from "../Form/FormField"
 import Button from "../Shared/Button"
+import PhoneInput from "react-phone-number-input"
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""
 const RECAPTCHA_SCRIPT = "https://www.google.com/recaptcha/api.js"
@@ -36,10 +35,16 @@ const Booking = () => {
 
   // Redirect after successful form submission
   useEffect(() => {
-    if (submitStatus === "success") {
-      router.push("/thank-you")
+    const handleSuccess = async () => {
+      if (submitStatus === "success") {
+        await sendFacebookLeadEvent()
+
+        router.push("/thank-you")
+      }
     }
-  }, [submitStatus, router])
+
+    handleSuccess()
+  }, [submitStatus])
 
   useEffect(() => {
     if (!RECAPTCHA_SITE_KEY || widgetIdRef.current !== null) return
@@ -74,6 +79,58 @@ const Booking = () => {
 
     return () => clearTimeout(t)
   }, [recaptchaReady])
+
+  // send to facebook
+  const sendFacebookLeadEvent = async (formData) => {
+    try {
+      const payload = {
+        data: [
+          {
+            event_name: "Website Form Fill Up",
+
+            event_time: Math.floor(Date.now() / 1000),
+
+            action_source: "website",
+
+            user_data: {
+              nm: [formData.name],
+              em: [formData.email],
+              ph: [formData.mobile],
+            },
+
+            attribution_data: {
+              attribution_share: "0.3",
+            },
+
+            original_event_data: {
+              event_name: "Website Form Fill Up",
+
+              event_time: Math.floor(Date.now() / 1000),
+            },
+          },
+        ],
+      }
+
+      const response = await fetch(
+        "https://graph.facebook.com/v25.0/4261920677414703/events?access_token=EAAXDSwqmnxoBRdVF6zhqinnDQwihnHbefskZC8C9M5SqCwPJKuwF1YvbOHk73X84zE8Y8XyurAaRBLPyU2Jq94TaZC6dIGJgiQSnq3Ok8la00s7IItBE7ZC0Cz3ZA5abjZC6mxpRaYVk9CFnZCtOOsdaeZBFWVfOi84Fm9GkLRLtYB9CsXoaNmd0l0zBDzYbVB1owZDZD",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(payload),
+        },
+      )
+
+      const data = await response.json()
+
+      console.log("Facebook Lead Event Success:", data)
+    } catch (error) {
+      console.error("Facebook Lead Event Error:", error)
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -123,18 +180,19 @@ const Booking = () => {
 
   return (
     <div
-  className="px-4 py-8 md:px-0 md:py-10"
-  style={{
-    background:
-      "linear-gradient(180deg, rgba(217, 242, 255, 0.60) 0%, rgba(247, 232, 214, 0.60) 100%)",
-  }}
->
+      className="px-4 py-8 md:px-0 md:py-10 mt-10"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(217, 242, 255, 0.60) 0%, rgba(247, 232, 214, 0.60) 100%)",
+      }}
+      id="booking-form"
+    >
       <div className="mx-auto max-w-7xl">
-        <h2 className="Helvetica font-bold text-center text-3xl leading-tight text-[#4E372A] md:text-5xl">
+        <h2 className="helvetica-black font-bold text-center text-3xl leading-tight md:text-[38px]">
           Secure Your Plot in a Growing Corridor
         </h2>
 
-        <p className=" Helvetica mt-4 text-center text-[#000000]">
+        <p className="helvetica-normal mt-4 text-center text-black!">
           Plots are limited within a 10-acre community. Speak with our team to
           understand pricing, availability, and site visit scheduling.
         </p>
@@ -149,15 +207,16 @@ const Booking = () => {
 
         <form onSubmit={handleSubmit} id={formId}>
           <div className="mx-auto flex w-full max-w-5xl flex-col items-center">
-            <div className="mt-10 w-full border border-[#E7DFD8] px-4 py-6 md:px-10 md:py-8">
-              <h3 className="Helvetica text-center text-xl text-black md:text-4xl">
+            <div className="mt-10 w-full shadow-md px-4 py-6 md:px-10 md:py-8 bg-white!">
+              <h3 className="helvetica-black text-center text-xl text-black md:text-[32px]">
                 Please Fill Up the Form to Book a Site Visit
               </h3>
 
               {/* Name */}
               <div className="mt-8">
-                <TextInputField
-                  placeholder="Your Name *"
+                <input
+                  placeholder="Your Name"
+                  className="border py-2 w-full px-4"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
@@ -172,10 +231,14 @@ const Booking = () => {
 
               {/* Phone */}
               <div className="mt-5">
-                <PhoneInputField
+                <PhoneInput
+                  placeholder="Enter phone number"
+                  international
+                  defaultCountry="IN"
+                  countryCallingCodeEditable={false}
+                  className="custom-phone-input w-full border px-4 py-2"
                   value={formData.mobile}
                   onChange={(val) => handleSelectChange("mobile", val)}
-                  placeholder="Your Mobile Number"
                 />
 
                 {fieldErrors.mobile && (
@@ -187,9 +250,10 @@ const Booking = () => {
 
               {/* Email */}
               <div className="mt-5">
-                <TextInputField
+                <input
+                  placeholder="Your Email Address"
                   type="email"
-                  placeholder="Your Email Address *"
+                  className="border py-2 w-full px-4"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -203,7 +267,7 @@ const Booking = () => {
               </div>
 
               {/* Consent */}
-              <div className="mt-6 flex items-start gap-2 text-sm text-[#646464]">
+              <div className="mt-6 flex items-start gap-2 text-sm text-[black]! helvetica-normal">
                 <input
                   id="booking-consent"
                   name="consent"
