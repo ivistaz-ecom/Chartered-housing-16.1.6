@@ -278,25 +278,25 @@ const HeroBanner = () => {
           {/* Mobile Section */}
           <div className="absolute top-[15%] px-5 py-6 text-center md:hidden">
             <div className="flex flex-col justify-center items-center">
-              <div className="mx-0 my-4 flex justify-center w-[50%]">
+              <div className="mx-0 my-4 flex justify-center w-[45%]">
                 <Image
                   src="/landing-page/Launching.png"
                   alt="Chartered Gulmohar"
-                  width={100}
-                  height={100}
+                  width={80}
+                  height={80}
                   className="h-auto w-full"
                   preload
                 />
               </div>
-              <h1 className="helvetica-black text-[32px] leading-tight text-white md:text-[48px]">
+              <h1 className="helvetica-black text-[26px] leading-tight text-white text-center ">
                 Premium Villa Plots
                 <br />
-                <span className="px-8 helvetica-black text-[32px] leading-tight text-white md:text-[48px]">
+                <span className="px-8 helvetica-black text-[26px] leading-tight text-white text-center">
                   in Nelamangala
                 </span>
               </h1>
 
-              <p className="mt-3 helvetica-normal text-center text-3xl text-[#F2E9CA]! md:text-[34px]">
+              <p className="mt-3 helvetica-normal text-center text-2xl text-[#F2E9CA]!">
                 Invest in Bangalore&apos;s Fast-Growing Corridor
               </p>
 
@@ -305,16 +305,16 @@ const HeroBanner = () => {
                 <Image
                   src="/landing-page/rera.webp"
                   alt="RERA Registered"
-                  width={90}
-                  height={90}
+                  width={70}
+                  height={70}
                   className="object-cover"
                 />
                 {/* NPA */}
                 <Image
                   src="/landing-page/NPA_Seal.webp"
                   alt="NPA Approved"
-                  width={90}
-                  height={90}
+                  width={70}
+                  height={70}
                   className="object-cover"
                 />
               </div>
@@ -336,7 +336,7 @@ const HeroBanner = () => {
                   alt="Chartered Gulmohar"
                   width={300}
                   height={100}
-                  className="h-auto w-full"
+                  className="h-auto w-[70%] object-contain"
                   preload
                 />
               </div>
@@ -346,7 +346,7 @@ const HeroBanner = () => {
                   alt="Chartered Gulmohar"
                   width={300}
                   height={90}
-                  className="h-auto w-full"
+                  className="h-auto w-[70%] object-contain"
                   preload
                 />
               </div>
