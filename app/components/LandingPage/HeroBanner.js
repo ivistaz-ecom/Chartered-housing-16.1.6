@@ -95,7 +95,7 @@ const HeroBanner = () => {
   return (
     <>
       <section className="relative w-full md:pt-32 pt-0">
-        <div className="relative w-full md:min-h-[700px] min-h-[600px]">
+        <div className="relative w-full md:min-h-[700px] min-h-[520px] bg-[#486C43]">
           {/* Desktop Banner */}
           <Image
             src="/landing-page/desk-banner-02.webp"
@@ -112,7 +112,7 @@ const HeroBanner = () => {
             width={900}
             height={660}
             priority
-            className="block h-[590px] w-full object-contain object-top md:hidden"
+            className="block h-[520px] w-full object-cover object-top md:hidden"
           />
 
           {/* Desktop Heading */}
@@ -336,7 +336,7 @@ const HeroBanner = () => {
                   alt="Chartered Gulmohar"
                   width={300}
                   height={100}
-                  className="h-auto w-[70%] object-contain"
+                  className="h-auto w-[80%] object-contain"
                   preload
                 />
               </div>
@@ -346,7 +346,7 @@ const HeroBanner = () => {
                   alt="Chartered Gulmohar"
                   width={300}
                   height={90}
-                  className="h-auto w-[70%] object-contain"
+                  className="h-auto w-[80%] object-contain"
                   preload
                 />
               </div>
@@ -358,7 +358,7 @@ const HeroBanner = () => {
       </section>
 
       {/* Bottom Strip */}
-      <div className="p-4 bg-[#486C43] md:hidden block -mt-7">
+      <div className="p-4 bg-[#486C43] md:hidden block">
         <form
           id={`${formId}-mobile`}
           onSubmit={handleSubmit}
