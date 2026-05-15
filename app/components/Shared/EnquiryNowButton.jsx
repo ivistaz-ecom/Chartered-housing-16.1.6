@@ -18,10 +18,12 @@ const EnquiryNowButton = () => {
       className="
         fixed
         right-[-55px]
+        bottom-36
+        top-auto
+        z-[60]
         md:top-1/2
-        top-2/3
-        z-100
-        -translate-y-1/2
+        md:bottom-auto
+        md:-translate-y-1/2
         rotate-[-90deg]
        hover:bg-white
         px-6
