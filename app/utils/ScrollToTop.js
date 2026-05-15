@@ -1,8 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+
+const LANDING_PATH = "/chartered-gulmohar-villa-plots-in-nelamangala";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+  const isLandingPage =
+    pathname?.replace(/\/+$/, "") === LANDING_PATH;
 
   // Show button when page is scrolled down
   useEffect(() => {
@@ -32,7 +38,11 @@ const ScrollToTop = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed lg:bottom-8 bottom-28 lg:right-8 right-1 z-50 bg-[#ED1C25] hover:bg-[#c91119] text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110"
+          className={`fixed z-50 bg-[#ED1C25] hover:bg-[#c91119] text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 lg:bottom-8 lg:right-8 ${
+            isLandingPage
+              ? "bottom-5 right-3"
+              : "bottom-8 right-4"
+          }`}
           aria-label="Scroll to top"
         >
           <svg

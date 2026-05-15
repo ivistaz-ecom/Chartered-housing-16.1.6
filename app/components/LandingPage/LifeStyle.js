@@ -1,19 +1,25 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
+
+const AUTO_SCROLL_MS = 3000
+const SWIPE_THRESHOLD = 40
 
 const amenities = [
   {
     icon: "/landing-page/IRokMf.tif.svg",
+    alt: "Clubhouse with swimming pool",
     title: "Clubhouse with swimming pool",
   },
   {
     icon: "/landing-page/F5z3Ql.svg",
+    alt: "Community gathering spaces",
     title: "Community gathering spaces",
   },
   {
     icon: "/landing-page/ODcTBU.svg",
+    alt: "Open play areas",
     title: (
       <>
         Open play
@@ -24,6 +30,7 @@ const amenities = [
   },
   {
     icon: "/landing-page/Group.svg",
+    alt: "Landscaped parks",
     title: (
       <>
         Landscaped
@@ -34,6 +41,7 @@ const amenities = [
   },
   {
     icon: "/landing-page/brCPy5.svg",
+    alt: "Indoor recreation space",
     title: (
       <>
         Indoor recreation
@@ -44,6 +52,7 @@ const amenities = [
   },
   {
     icon: "/landing-page/vsRwQ1.tif.svg",
+    alt: "Avenue plantations",
     title: (
       <>
         Avenue
@@ -54,7 +63,6 @@ const amenities = [
   },
 ]
 
-// Only 3 dots/groups
 const mobileSlides = [
   amenities.slice(0, 2),
   amenities.slice(2, 4),
@@ -64,22 +72,94 @@ const mobileSlides = [
 const LifeStyle = () => {
   const [activeCard, setActiveCard] = useState(0)
   const [activeGroup, setActiveGroup] = useState(0)
+  const [dragOffset, setDragOffset] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
 
-  // Auto scroll
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const touchStartX = useRef(0)
+  const isDraggingRef = useRef(false)
+  const autoScrollRef = useRef(null)
+
+  const goToSlide = useCallback((index) => {
+    const next =
+      ((index % amenities.length) + amenities.length) % amenities.length
+    setActiveCard(next)
+    setActiveGroup(Math.floor(next / 2))
+  }, [])
+
+  const goToNext = useCallback(() => {
+    setActiveCard((prev) => {
+      const next = (prev + 1) % amenities.length
+      setActiveGroup(Math.floor(next / 2))
+      return next
+    })
+  }, [])
+
+  const goToPrev = useCallback(() => {
+    setActiveCard((prev) => {
+      const next = (prev - 1 + amenities.length) % amenities.length
+      setActiveGroup(Math.floor(next / 2))
+      return next
+    })
+  }, [])
+
+  const stopAutoScroll = useCallback(() => {
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current)
+      autoScrollRef.current = null
+    }
+  }, [])
+
+  const startAutoScroll = useCallback(() => {
+    stopAutoScroll()
+    autoScrollRef.current = setInterval(() => {
       setActiveCard((prev) => {
         const next = (prev + 1) % amenities.length
-
-        // Update active dot every 2 cards
         setActiveGroup(Math.floor(next / 2))
-
         return next
       })
-    }, 3000)
+    }, AUTO_SCROLL_MS)
+  }, [stopAutoScroll])
 
-    return () => clearInterval(interval)
-  }, [])
+  useEffect(() => {
+    startAutoScroll()
+    return stopAutoScroll
+  }, [startAutoScroll, stopAutoScroll])
+
+  const handleTouchStart = (e) => {
+    stopAutoScroll()
+    touchStartX.current = e.touches[0].clientX
+    isDraggingRef.current = true
+    setIsDragging(true)
+    setDragOffset(0)
+  }
+
+  const handleTouchMove = (e) => {
+    if (!isDraggingRef.current) return
+    setDragOffset(e.touches[0].clientX - touchStartX.current)
+  }
+
+  const handleTouchEnd = (e) => {
+    const delta = e.changedTouches[0].clientX - touchStartX.current
+
+    isDraggingRef.current = false
+    setIsDragging(false)
+    setDragOffset(0)
+
+    if (delta < -SWIPE_THRESHOLD) {
+      goToNext()
+    } else if (delta > SWIPE_THRESHOLD) {
+      goToPrev()
+    }
+
+    startAutoScroll()
+  }
+
+  const handleTouchCancel = () => {
+    isDraggingRef.current = false
+    setIsDragging(false)
+    setDragOffset(0)
+    startAutoScroll()
+  }
 
   return (
     <section className="px-4 md:px-0">
@@ -90,12 +170,12 @@ const LifeStyle = () => {
 
         {/* Desktop */}
         <div className="mt-8 hidden grid-cols-6 gap-4 md:grid">
-          {amenities.map((item) => (
+          {amenities.map((item, index) => (
             <div
-              key={item.title}
+              key={index}
               className="flex min-h-[210px] flex-col items-center justify-center rounded-md border border-[#ED1C25] px-4 text-center"
             >
-              <Image src={item.icon} alt={item.title} width={78} height={78} />
+              <Image src={item.icon} alt={item.alt} width={78} height={78} />
 
               <p className="mt-5 text-[30px] leading-snug text-[#646464]">
                 {item.title}
@@ -105,11 +185,18 @@ const LifeStyle = () => {
         </div>
 
         {/* Mobile Carousel */}
-        <div className="mt-8 overflow-hidden md:hidden">
+        <div
+          className="mt-8 overflow-hidden md:hidden"
+          style={{ touchAction: "pan-y pinch-zoom" }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchCancel}
+        >
           <div
-            className="flex transition-transform duration-500 ease-in-out"
+            className={`flex ${isDragging ? "" : "transition-transform duration-500 ease-in-out"}`}
             style={{
-              transform: `translateX(-${activeCard * 100}%)`,
+              transform: `translateX(calc(-${activeCard * 100}% + ${dragOffset}px))`,
             }}
           >
             {amenities.map((item, index) => (
@@ -118,9 +205,10 @@ const LifeStyle = () => {
                   <div className="flex justify-center">
                     <Image
                       src={item.icon}
-                      alt={item.title}
+                      alt={item.alt}
                       width={86}
                       height={86}
+                      draggable={false}
                     />
                   </div>
 
@@ -139,8 +227,9 @@ const LifeStyle = () => {
                 key={index}
                 type="button"
                 onClick={() => {
-                  setActiveGroup(index)
-                  setActiveCard(index * 2)
+                  stopAutoScroll()
+                  goToSlide(index * 2)
+                  startAutoScroll()
                 }}
                 aria-label={`Go to slide ${index + 1}`}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
