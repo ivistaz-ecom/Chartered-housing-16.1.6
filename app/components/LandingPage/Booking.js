@@ -4,6 +4,7 @@ import Script from "next/script"
 import { useRef, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useFormHandler } from "@/hooks/useFormHandler"
+import { useUtmCapture } from "@/hooks/useUtmCapture"
 import Button from "../Shared/Button"
 import PhoneInput from "react-phone-number-input"
 
@@ -12,6 +13,7 @@ const RECAPTCHA_SCRIPT = "https://www.google.com/recaptcha/api.js"
 
 const Booking = () => {
   const router = useRouter()
+  useUtmCapture()
 
   const {
     formData,
@@ -22,6 +24,7 @@ const Booking = () => {
     submitStatus,
     fieldErrors,
     formId,
+    lastSubmission,
   } = useFormHandler(5877)
 
   const recaptchaContainerRef = useRef(null)
@@ -36,15 +39,14 @@ const Booking = () => {
   // Redirect after successful form submission
   useEffect(() => {
     const handleSuccess = async () => {
-      if (submitStatus === "success") {
-        await sendFacebookLeadEvent()
-
+      if (submitStatus === "success" && lastSubmission) {
+        await sendFacebookLeadEvent(lastSubmission)
         router.push("/thank-you")
       }
     }
 
     handleSuccess()
-  }, [submitStatus])
+  }, [submitStatus, lastSubmission, router])
 
   useEffect(() => {
     if (!RECAPTCHA_SITE_KEY || widgetIdRef.current !== null) return
@@ -138,7 +140,7 @@ const Booking = () => {
     setRecaptchaError("")
 
     if (!RECAPTCHA_SITE_KEY) {
-      submitForm(e)
+      submitForm(e, { formSource: "booking-form" })
       return
     }
 
@@ -158,7 +160,10 @@ const Booking = () => {
         return
       }
 
-      submitForm(e, { recaptchaToken: token })
+      submitForm(e, {
+        recaptchaToken: token,
+        formSource: "booking-form",
+      })
 
       window.grecaptcha.reset(widgetIdRef.current)
     }
