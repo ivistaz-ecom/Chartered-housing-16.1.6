@@ -4,7 +4,6 @@ import Script from "next/script"
 import { useRef, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useFormHandler } from "@/hooks/useFormHandler"
-import { useUtmCapture } from "@/hooks/useUtmCapture"
 import Button from "../Shared/Button"
 import PhoneInput from "react-phone-number-input"
 
@@ -13,7 +12,6 @@ const RECAPTCHA_SCRIPT = "https://www.google.com/recaptcha/api.js"
 
 const Booking = () => {
   const router = useRouter()
-  useUtmCapture()
 
   const {
     formData,
