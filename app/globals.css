@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "react-phone-number-input/style.css";
 
 * {
   font-family: var(--font-nunito), sans-serif;
@@ -221,30 +222,94 @@ p {
   }
 }
 
+.custom-phone-input,
+.custom-phone-input.PhoneInput {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.custom-phone-input .PhoneInputCountry {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  margin-right: 0.25rem;
+}
+
+.custom-phone-input .PhoneInputCountryIcon {
+  width: 1.35rem !important;
+  height: 0.9rem !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.custom-phone-input .PhoneInputCountryIcon--border {
+  box-shadow: none !important;
+}
+
+.custom-phone-input .PhoneInputCountryIconImg {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.custom-phone-input .PhoneInputCountrySelect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.custom-phone-input .PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+}
+
 .custom-phone-input .PhoneInputInput:focus {
   outline: none !important;
   box-shadow: none !important;
   border: none !important;
 }
 
-/* Remove focus ring on the country dropdown */
 .custom-phone-input .PhoneInputCountry:focus-within {
   outline: none !important;
   box-shadow: none !important;
   border: none !important;
 }
 
-/* Ensuring transparent background remains */
-.custom-phone-input input {
+.custom-phone-input input,
+.custom-phone-input .PhoneInputInput {
   background: transparent !important;
   border: none !important;
   outline: none !important;
   color: #646464 !important;
 }
 
-.custom-phone-input input::placeholder {
+.custom-phone-input input::placeholder,
+.custom-phone-input .PhoneInputInput::placeholder {
   color: #8a8a8a !important;
   opacity: 1 !important;
+}
+
+/* Bordered variant for landing page hero / mobile strip forms */
+.landing-phone-field {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+}
+
+.landing-phone-field .landing-phone-input,
+.landing-phone-field .custom-phone-input {
+  border: none !important;
+  padding: 0 !important;
 }
 
 .floating-button {

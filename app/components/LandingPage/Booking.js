@@ -234,15 +234,17 @@ const Booking = () => {
 
               {/* Phone */}
               <div className="mt-5">
-                <PhoneInput
-                  placeholder="Enter phone number"
-                  international
-                  defaultCountry="IN"
-                  countryCallingCodeEditable={false}
-                  className="custom-phone-input w-full border px-4 py-2"
-                  value={formData.mobile}
-                  onChange={(val) => handleSelectChange("mobile", val)}
-                />
+                <div className="landing-phone-field">
+                  <PhoneInput
+                    placeholder="Enter phone number"
+                    international
+                    defaultCountry="IN"
+                    countryCallingCodeEditable={false}
+                    className="custom-phone-input landing-phone-input"
+                    value={formData.mobile}
+                    onChange={(val) => handleSelectChange("mobile", val)}
+                  />
+                </div>
 
                 {fieldErrors.mobile && (
                   <span className="mt-1 block text-start text-xs text-red-500">

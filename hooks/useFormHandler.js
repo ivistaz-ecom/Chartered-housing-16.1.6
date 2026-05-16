@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { validatePlainTextOnly, sanitizeText } from "@/lib/sanitizeText"
-import { getUtmTagsForSubmit } from "@/lib/utmTracking"
+import { getTrackingForSubmit } from "@/lib/utmTracking"
 import { submitLeadToGoogleSheet } from "@/lib/googleSheetLead"
 
 // Default form data
@@ -54,11 +54,23 @@ const validateMobileNumber = (mobile) => {
   return null
 }
 
-const getUtmAtSubmit = () => {
+const getTrackingAtSubmit = () => {
   if (typeof window === "undefined") {
-    return { utm_source: "", utm_campaign: "", utm_touchpoints: "" }
+    return {
+      utm_source: "",
+      utm_campaign: "",
+      utm_touchpoints: "",
+      utm_medium: "",
+      utm_term: "",
+      utm_content: "",
+      gclid: "",
+      fbclid: "",
+      page_url: "",
+      referrer: "",
+      user_agent: "",
+    }
   }
-  return getUtmTagsForSubmit(new URLSearchParams(window.location.search))
+  return getTrackingForSubmit(new URLSearchParams(window.location.search))
 }
 
 export const useFormHandler = (formId) => {
@@ -322,14 +334,12 @@ export const useFormHandler = (formId) => {
         setLastSubmission(submissionSnapshot)
 
         if (formId === 5877) {
-          const utm = getUtmAtSubmit()
+          const tracking = getTrackingAtSubmit()
           try {
             await submitLeadToGoogleSheet({
               ...submissionSnapshot,
+              ...tracking,
               form_source: extraData.formSource || "",
-              utm_source: utm.utm_source,
-              utm_campaign: utm.utm_campaign,
-              utm_touchpoints: utm.utm_touchpoints,
               submitted_at: new Date().toISOString(),
             })
           } catch (sheetError) {

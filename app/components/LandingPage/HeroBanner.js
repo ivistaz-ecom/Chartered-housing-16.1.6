@@ -234,15 +234,17 @@ const HeroBanner = () => {
 
                 {/* Phone */}
                 <div>
-                  <PhoneInput
-                    placeholder="Enter phone number"
-                    international
-                    defaultCountry="IN"
-                    countryCallingCodeEditable={false}
-                    className="w-full border px-4 py-2"
-                    value={formData.mobile}
-                    onChange={(val) => handleSelectChange("mobile", val)}
-                  />
+                  <div className="landing-phone-field">
+                    <PhoneInput
+                      placeholder="Enter phone number"
+                      international
+                      defaultCountry="IN"
+                      countryCallingCodeEditable={false}
+                      className="custom-phone-input landing-phone-input"
+                      value={formData.mobile}
+                      onChange={(val) => handleSelectChange("mobile", val)}
+                    />
+                  </div>
 
                   {fieldErrors.mobile && (
                     <span className="mt-1 block text-xs text-red-500">
@@ -386,15 +388,17 @@ const HeroBanner = () => {
 
           {/* Phone */}
           <div>
-            <PhoneInput
-              placeholder="Enter phone number"
-              international
-              defaultCountry="IN"
-              countryCallingCodeEditable={false}
-              className="w-full border px-4 py-2"
-              value={formData.mobile}
-              onChange={(val) => handleSelectChange("mobile", val)}
-            />
+            <div className="landing-phone-field">
+              <PhoneInput
+                placeholder="Enter phone number"
+                international
+                defaultCountry="IN"
+                countryCallingCodeEditable={false}
+                className="custom-phone-input landing-phone-input"
+                value={formData.mobile}
+                onChange={(val) => handleSelectChange("mobile", val)}
+              />
+            </div>
 
             {fieldErrors.mobile && (
               <span className="mt-1 block text-left text-xs text-red-500">
