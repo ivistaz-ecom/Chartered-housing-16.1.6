@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import { validatePlainTextOnly, sanitizeText } from "@/lib/sanitizeText"
+import { getUtmTagsForSubmit } from "@/lib/utmTracking"
+import { submitLeadToGoogleSheet } from "@/lib/googleSheetLead"
 
 // Default form data
 const defaultFormData = {
@@ -52,11 +54,19 @@ const validateMobileNumber = (mobile) => {
   return null
 }
 
+const getUtmAtSubmit = () => {
+  if (typeof window === "undefined") {
+    return { utm_source: "", utm_campaign: "", utm_touchpoints: "" }
+  }
+  return getUtmTagsForSubmit(new URLSearchParams(window.location.search))
+}
+
 export const useFormHandler = (formId) => {
   const [formData, setFormData] = useState(defaultFormData)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
   const [fieldErrors, setFieldErrors] = useState({})
+  const [lastSubmission, setLastSubmission] = useState(null)
 
   const handleChange = (e) => {
     if (!e?.target) return // ✅ Prevent runtime error
@@ -304,6 +314,29 @@ export const useFormHandler = (formId) => {
       console.log("Response result:", result)
 
       if (response.ok && result.status === "mail_sent") {
+        const submissionSnapshot = {
+          name: safeName || "",
+          email: formData.email?.trim() || "",
+          mobile: cleanMobile,
+        }
+        setLastSubmission(submissionSnapshot)
+
+        if (formId === 5877) {
+          const utm = getUtmAtSubmit()
+          try {
+            await submitLeadToGoogleSheet({
+              ...submissionSnapshot,
+              form_source: extraData.formSource || "",
+              utm_source: utm.utm_source,
+              utm_campaign: utm.utm_campaign,
+              utm_touchpoints: utm.utm_touchpoints,
+              submitted_at: new Date().toISOString(),
+            })
+          } catch (sheetError) {
+            console.error("Google Sheet submission error:", sheetError)
+          }
+        }
+
         setSubmitStatus("success")
         setFormData(defaultFormData)
         setFieldErrors({})
@@ -323,6 +356,7 @@ export const useFormHandler = (formId) => {
     setFormData(defaultFormData)
     setSubmitStatus(null)
     setFieldErrors({})
+    setLastSubmission(null)
   }
 
   return {
@@ -339,5 +373,6 @@ export const useFormHandler = (formId) => {
     validateAllFields,
     resetForm,
     formId,
+    lastSubmission,
   }
 }

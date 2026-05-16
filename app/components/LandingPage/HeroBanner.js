@@ -5,11 +5,12 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import Button from "../Shared/Button"
 import { useFormHandler } from "@/hooks/useFormHandler"
-import { PhoneInputField, TextInputField } from "../Form/FormField"
+import { useUtmCapture } from "@/hooks/useUtmCapture"
 import PhoneInput from "react-phone-number-input"
 
 const HeroBanner = () => {
   const router = useRouter()
+  useUtmCapture()
 
   const {
     formData,
@@ -21,7 +22,10 @@ const HeroBanner = () => {
     submitStatus,
     fieldErrors,
     formId,
+    lastSubmission,
   } = useFormHandler(5877)
+
+  const onFormSubmit = (e) => handleSubmit(e, { formSource: "hero-banner" })
 
   // Auto consent
   useEffect(() => {
@@ -82,15 +86,14 @@ const HeroBanner = () => {
   // Redirect after successful form submit
   useEffect(() => {
     const handleSuccess = async () => {
-      if (submitStatus === "success") {
-        await sendFacebookLeadEvent()
-
+      if (submitStatus === "success" && lastSubmission) {
+        await sendFacebookLeadEvent(lastSubmission)
         router.push("/thank-you")
       }
     }
 
     handleSuccess()
-  }, [submitStatus])
+  }, [submitStatus, lastSubmission, router])
 
   return (
     <>
@@ -209,7 +212,7 @@ const HeroBanner = () => {
             <div className="mt-[65px] w-[260px] md:ml-20 rounded-[6px] bg-[#ffffff] px-3 py-3 shadow-2xl mb-6 ">
               <form
                 id={formId}
-                onSubmit={handleSubmit}
+                onSubmit={onFormSubmit}
                 className="flex flex-col gap-2"
               >
                 {/* Name */}
@@ -361,7 +364,7 @@ const HeroBanner = () => {
       <div className="p-4 bg-[#486C43] md:hidden block">
         <form
           id={`${formId}-mobile`}
-          onSubmit={handleSubmit}
+          onSubmit={onFormSubmit}
           className="mx-auto mt-2 flex w-full flex-col gap-4  bg-white px-4 py-5 shadow-xl backdrop-blur-md"
         >
           {/* Name */}
